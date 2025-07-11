@@ -16,11 +16,9 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.Clientes;
 
-import io.github.nicolazlxl.TesteSQLPOO.Entidades;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.TypedQuery;
-import java.util.List;
+
+import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
+
 
 /**
  * Repository actions for Aluno entity
@@ -29,68 +27,20 @@ import java.util.List;
  * @version 0.1
  * @since 0.1, 2025-06-25
  */
-public class ClienteRepository {
-
-    public Long save(Cliente cliente) {
-        EntityManager em = DataSourceFactory.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        try {
-            tx.begin();
-            if (cliente.getId() == null) {
-                em.persist(cliente);
-            }
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-                em.close();
-                throw e;
-            }
-        } finally {
-            em.close();
-        }
-
-        return cliente.getId();
+public class ClienteRepository extends Repository<Cliente> {
+   @Override
+    public String getJpqlFindAll() {
+        return "SELECT a FROM Aluno a";
     }
 
-    public Long update(Cliente cliente) {
-
-        EntityManager em = DataSourceFactory.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        try {
-            tx.begin();
-            if (cliente.getId() != null) {
-                em.merge(cliente);
-            }
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-                em.close();
-                throw e;
-            }
-        } finally {
-            em.close();
-        }
-
-        return cliente.getId();
+    @Override
+    public String getJpqlFindById() {
+        return "SELECT a FROM Aluno a WHERE a.id = :id";
     }
 
-    public List<Cliente> findAll() {
-
-        EntityManager em = DataSourceFactory.getEntityManager();
-
-        try {
-            TypedQuery<Cliente> query
-                    = em.createQuery(
-                            "SELECT a FROM Aluno a",
-                            Cliente.class
-                    );
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
+    @Override
+    public String getJpqlDeleteById() {
+        return "DELETE FROM Aluno a WHERE a.id = :id";
     }
+   
 }
