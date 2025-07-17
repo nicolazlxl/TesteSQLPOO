@@ -1,5 +1,6 @@
 io\github\nicolazlxl\TesteSQLPOO\Clientes\Cliente.class
 io\github\nicolazlxl\TesteSQLPOO\Entidades\IRepository.class
+io\github\nicolazlxl\TesteSQLPOO\Clientes\NewEntity.class
 io\github\nicolazlxl\TesteSQLPOO\Entidades\DataSourceFactory.class
 io\github\nicolazlxl\TesteSQLPOO\Clientes\Program.class
 io\github\nicolazlxl\TesteSQLPOO\Clientes\ClienteRepository.class

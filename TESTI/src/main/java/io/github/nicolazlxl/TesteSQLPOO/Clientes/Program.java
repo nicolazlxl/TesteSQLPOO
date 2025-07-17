@@ -17,7 +17,6 @@
 
 package io.github.nicolazlxl.TesteSQLPOO.Clientes;
 
-import io.github.nicolazlxl.TesteSQLPOO.Clientes.ClienteRepository;
 import java.time.LocalDate;
 import java.util.List;
 
