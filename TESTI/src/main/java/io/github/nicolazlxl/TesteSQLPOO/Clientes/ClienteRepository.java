@@ -21,9 +21,8 @@ import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 
 
 /**
- * Repository actions for Aluno entity
  *
- * @author Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;
+ * @author Nicolas Marques;
  * @version 0.1
  * @since 0.1, 2025-06-25
  */
