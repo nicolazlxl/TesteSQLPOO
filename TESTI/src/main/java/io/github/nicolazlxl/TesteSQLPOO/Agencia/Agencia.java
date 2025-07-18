@@ -26,8 +26,8 @@ public class Agencia
     //private static final long serialVersionUID = 1L;
     
     
-    @Column(nullable = false,unique = true, length = 10)
-    private String codigo;
+    @Column(nullable = false,unique = true)
+    private double codigo;
 
 
     @Column(nullable = false, length = 50)
@@ -43,15 +43,15 @@ public class Agencia
     private String gerente;
 
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    
 
-    public String getCodigo() {
+    public double getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(double codigo) {
         this.codigo = codigo;
     }
+    
 
     public String getNome() {
         return nome;
@@ -85,5 +85,11 @@ public class Agencia
         this.gerente = gerente;
     }
 //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Agencia{" + "codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", gerente=" + gerente + '}';
+    }
+    
     
 }
