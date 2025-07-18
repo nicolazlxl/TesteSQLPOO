@@ -16,31 +16,31 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.Clientes;
 
-
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 
-
 /**
- * Repository actions for Aluno entity
+ * Repository for Aluno operations
  *
  * @author Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;
  * @version 0.1
- * @since 0.1, 2025-06-25
+ * @since 0.1, Jul 7, 2025
  */
-public class ClienteRepository extends Repository<Cliente> {
-   @Override
+public class AlunoRepository
+        extends Repository<Aluno> {
+
+    @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Cliente a";
+        return "SELECT a FROM Aluno a";
     }
 
     @Override
     public String getJpqlFindById() {
-        return "SELECT a FROM Cliente a WHERE a.id = :id";
+        return "SELECT a FROM Aluno a WHERE a.id = :id";
     }
 
     @Override
     public String getJpqlDeleteById() {
-        return "DELETE FROM Cliente a WHERE a.id = :id";
+        return "DELETE FROM Aluno a WHERE a.id = :id";
     }
-   
+
 }

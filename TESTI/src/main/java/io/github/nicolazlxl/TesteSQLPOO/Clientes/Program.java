@@ -17,6 +17,10 @@
 
 package io.github.nicolazlxl.TesteSQLPOO.Clientes;
 
+
+import io.github.nicolazlxl.TesteSQLPOO.Clientes.Cliente;
+import io.github.nicolazlxl.TesteSQLPOO.Clientes.ClienteRepository;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,28 +35,26 @@ public class Program {
 
     public static void main(String[] args) {
         // Object to be persisted
+        
         Cliente c1 = new Cliente();
-        Cliente c2 = new Cliente();
 
         // !!! ID should not be set!!!
         //aluno.setId(1234L);
 //        
-        c1.setCpf("02109933674");
+
         c1.setNome("Ana Zaira");
-        c1.setEmail("meuEmail.com");
-        
-      
-        c2.setCpf("123456789");
-        c2.setNome("Mario Antonieta");
-        c2.setEmail("meusegundoEmail.com");
+        c1.setCpf("02109933674");
+        c1.setEmail("email");
+        c1.setIdade(52);
         
 
-        ClienteRepository repository = new ClienteRepository();
+      
+         ClienteRepository repository = new ClienteRepository();
 
         // Persistence
         repository.saveOrUpdate(c1);
-        repository.saveOrUpdate(c2);
-        
+     
+       /* 
 //        +-----------+------------+----+--------------+
 //        | matricula | nascimento | id | nome         |
 //        +-----------+------------+----+--------------+
