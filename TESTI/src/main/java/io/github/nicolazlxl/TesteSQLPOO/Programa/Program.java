@@ -19,12 +19,16 @@ package io.github.nicolazlxl.TesteSQLPOO.Programa;
 
 
 import io.github.nicolazlxl.TesteSQLPOO.Clientes.Cliente;
-import io.github.nicolazlxl.TesteSQLPOO.Clientes.Cliente;
-import io.github.nicolazlxl.TesteSQLPOO.Clientes.ClienteRepository;
-import io.github.nicolazlxl.TesteSQLPOO.Clientes.ClienteRepository;
+import io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia;
+import io.github.nicolazlxl.TesteSQLPOO.Conta.Conta;
 
+import io.github.nicolazlxl.TesteSQLPOO.Clientes.ClienteRepository;
+import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
+import io.github.nicolazlxl.TesteSQLPOO.Conta.ContaRepository;    
 import java.time.LocalDate;
+
 import java.util.List;
+import java.util.Set;
 
 /**
  * Runs tests of the "Alpha" version
@@ -38,23 +42,78 @@ public class Program {
     public static void main(String[] args) {
         // Object to be persisted
         
+        
         Cliente c1 = new Cliente();
-
-        // !!! ID should not be set!!!
-        //aluno.setId(1234L);
-//        
-
-        c1.setNome("Ana Zaira");
+         Cliente c2 = new Cliente();
+        Agencia a1 = new Agencia();
+        Conta con = new Conta();
+        
+         ClienteRepository repositoryC = new ClienteRepository();
+         AgenciaRepository repositoryA = new AgenciaRepository();
+         ContaRepository repositoryCon = new ContaRepository();
+         
+         
+        c1.setNome("Ana");
         c1.setCpf("02109933674");
         c1.setEmail("email");
         c1.setIdade(52);
         
-
-      
-         ClienteRepository repository = new ClienteRepository();
-
-        // Persistence
-        repository.saveOrUpdate(c1);
+        
+        c2.setNome("Maria");
+        c2.setCpf("15152036");
+        c2.setEmail("maria@yahoo.com");
+        c2.setIdade(52);
+        
+        
+        a1.setCodigo("40028922");
+        a1.setEndereco("lugardobanco");
+        a1.setGerente("Dono");
+        a1.setNome("Bancao");
+        a1.setTelefone("0800");
+        
+        con.setDataCriacao(LocalDate.of(2024,10,25));
+        con.setLimiteDiariSaque(1000);
+        con.setNumero("4321");
+        con.setSaldo(100000);
+        con.setStatus("Bloqueado");
+       
+         
+        repositoryC.saveOrUpdate(c1);
+         repositoryC.saveOrUpdate(c2);
+        repositoryA.saveOrUpdate(a1);
+        repositoryCon.saveOrUpdate(con);
+        
+         List<Cliente> clientes = repositoryC.findAll();
+        
+        for (Cliente cliente : clientes) {
+            System.out.println(">> " + cliente);
+        }
+        
+        System.out.println("___________________________________");
+        
+         c2.setEmail("maria@gmail.com");
+         repositoryC.saveOrUpdate(c2);
+         
+         
+         clientes = repositoryC.findAll();
+         
+          for (Cliente cliente : clientes) {
+            System.out.println(">> " + cliente);
+        }
+        
+         System.out.println("___________________________________");
+        
+       repositoryC.delete(c1);
+       
+       
+       clientes = repositoryC.findAll();
+         
+          for (Cliente cliente : clientes) {
+            System.out.println(">> " + cliente);
+        }
+        
+        
+       
      
        /* 
 //        +-----------+------------+----+--------------+
