@@ -18,6 +18,7 @@ import java.util.Objects;
  *
  * @author Dell
  */
+@Entity
 public class Agencia 
     extends ProjectEntity
         implements Serializable{
@@ -38,7 +39,7 @@ public class Agencia
     @Column(length = 20)
     private String telefone;
     
-    @Column(length = 0)
+    @Column(length = 100)
     private String gerente;
 
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
