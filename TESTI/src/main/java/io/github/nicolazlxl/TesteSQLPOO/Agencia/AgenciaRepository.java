@@ -7,7 +7,7 @@ package io.github.nicolazlxl.TesteSQLPOO.Agencia;
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 /**
  *
- * @author Dell
+ * @author Sarah
  */
 public class AgenciaRepository extends Repository<Agencia>{
 
