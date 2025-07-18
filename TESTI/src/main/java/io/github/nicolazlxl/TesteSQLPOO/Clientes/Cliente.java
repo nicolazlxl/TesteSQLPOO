@@ -29,9 +29,8 @@ import java.util.Objects;
 /**
  * Cliente entity
  *
- * @author Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;
- * @version 0.1
- * @since 0.1, 2025-06-25
+ * @author Nicolas Marques;
+
  */
 @Entity
 public class Cliente
