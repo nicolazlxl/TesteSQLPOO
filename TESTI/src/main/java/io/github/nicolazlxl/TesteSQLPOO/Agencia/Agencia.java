@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Dell
+ * @author Sarah
  */
 @Entity
 public class Agencia 
