@@ -37,6 +37,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-       <exec.mainClass>io.github.nicolazlxl.TesteSQLPOO.Clientes.Program</exec.mainClass>
+       <exec.mainClass>io.github.nicolazlxl.TesteSQLPOO.Programa.Program</exec.mainClass>
     </properties>
 </project>
