@@ -65,7 +65,7 @@ public class Program {
         c2.setIdade(52);
         
         
-        a1.setCodigo("40028922");
+        a1.setCodigo(40028922);
         a1.setEndereco("lugardobanco");
         a1.setGerente("Dono");
         a1.setNome("Bancao");
@@ -73,7 +73,7 @@ public class Program {
         
         con.setDataCriacao(LocalDate.of(2024,10,25));
         con.setLimiteDiariSaque(1000);
-        con.setNumero("4321");
+        con.setNumero(4321);
         con.setSaldo(100000);
         con.setStatus("Bloqueado");
        
