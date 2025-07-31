@@ -4,6 +4,9 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia;
+import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
+import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +31,8 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlPrincipal = new javax.swing.JPanel();
+        Agencia = new javax.swing.JTabbedPane();
+        pnlCadastro = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblEndereco = new javax.swing.JLabel();
@@ -41,9 +45,23 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         txtGerente = new javax.swing.JTextField();
         lblBemVindoBancoPOO = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
+        pnlListagem = new javax.swing.JPanel();
+        lblAgencia = new javax.swing.JLabel();
+        scrAgencia = new javax.swing.JScrollPane();
+        lstAgencia = new javax.swing.JList<>();
+        radPresentes = new javax.swing.JRadioButton();
+        radExcluidos = new javax.swing.JRadioButton();
+        btnExlcluir = new javax.swing.JButton();
+        lblLixeira = new javax.swing.JLabel();
+        bntRestaurarLixeira = new javax.swing.JButton();
+        bntExcluirPermanentementeLixeira = new javax.swing.JButton();
+        bntExvaziarLixeira = new javax.swing.JButton();
+        lblAlerta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Agencia");
+
+        Agencia.setBackground(new java.awt.Color(0, 102, 102));
 
         lblCodigo.setFont(new java.awt.Font("Constantia", 0, 14)); // NOI18N
         lblCodigo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -71,7 +89,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             }
         });
 
-        lblBemVindoBancoPOO.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+        lblBemVindoBancoPOO.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
         lblBemVindoBancoPOO.setForeground(new java.awt.Color(0, 153, 153));
         lblBemVindoBancoPOO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBemVindoBancoPOO.setText("Bem Vindo! A nossa Agência.");
@@ -85,79 +103,178 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
-        pnlPrincipal.setLayout(pnlPrincipalLayout);
-        pnlPrincipalLayout.setHorizontalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCadastroLayout = new javax.swing.GroupLayout(pnlCadastro);
+        pnlCadastro.setLayout(pnlCadastroLayout);
+        pnlCadastroLayout.setHorizontalGroup(
+            pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                            .addGroup(pnlCadastroLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
-                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                            .addComponent(txtNome)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlCadastroLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSalvar))
-                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCadastroLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEndereco)
                                     .addComponent(txtTelefone)
                                     .addComponent(txtGerente))))
                         .addGap(6, 6, 6)))
                 .addContainerGap())
-            .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(lblBemVindoBancoPOO, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(lblBemVindoBancoPOO, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
-        pnlPrincipalLayout.setVerticalGroup(
-            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+        pnlCadastroLayout.setVerticalGroup(
+            pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblBemVindoBancoPOO, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCodigo)
                     .addComponent(lblCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTelefone)
                     .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
-                .addGap(70, 70, 70))
+                .addGap(79, 79, 79))
         );
+
+        Agencia.addTab("Cadastro Agência", pnlCadastro);
+
+        pnlListagem.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblAgencia.setFont(new java.awt.Font("Constantia", 1, 14)); // NOI18N
+        lblAgencia.setText("Agências Cadastradas");
+
+        scrAgencia.setViewportView(lstAgencia);
+
+        radPresentes.setText("Presentes no Banco de Dados");
+        radPresentes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radPresentesItemStateChanged(evt);
+            }
+        });
+
+        radExcluidos.setText("Excluidos");
+
+        btnExlcluir.setBackground(new java.awt.Color(0, 153, 153));
+        btnExlcluir.setText("Excluir");
+        btnExlcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExlcluirActionPerformed(evt);
+            }
+        });
+
+        lblLixeira.setFont(new java.awt.Font("Constantia", 1, 14)); // NOI18N
+        lblLixeira.setText("Lixeira:");
+
+        bntRestaurarLixeira.setBackground(new java.awt.Color(0, 153, 153));
+        bntRestaurarLixeira.setText("Restaurar");
+
+        bntExcluirPermanentementeLixeira.setBackground(new java.awt.Color(0, 102, 102));
+        bntExcluirPermanentementeLixeira.setText("Excluir Permanentemente");
+
+        bntExvaziarLixeira.setBackground(new java.awt.Color(0, 51, 51));
+        bntExvaziarLixeira.setText("Esvaziar Lixeira");
+
+        lblAlerta.setBackground(new java.awt.Color(0, 255, 153));
+        lblAlerta.setFont(new java.awt.Font("Constantia", 3, 14)); // NOI18N
+        lblAlerta.setForeground(new java.awt.Color(0, 0, 0));
+        lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAlerta.setText("Selecione uma Agência");
+        lblAlerta.setOpaque(true);
+
+        javax.swing.GroupLayout pnlListagemLayout = new javax.swing.GroupLayout(pnlListagem);
+        pnlListagem.setLayout(pnlListagemLayout);
+        pnlListagemLayout.setHorizontalGroup(
+            pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlListagemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlListagemLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bntExvaziarLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntExcluirPermanentementeLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radPresentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExlcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlListagemLayout.setVerticalGroup(
+            pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlListagemLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lblAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                        .addComponent(radPresentes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radExcluidos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExlcluir)))
+                .addGap(12, 12, 12)
+                .addComponent(lblAlerta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLixeira)
+                .addGap(17, 17, 17)
+                .addComponent(bntRestaurarLixeira)
+                .addGap(16, 16, 16)
+                .addComponent(bntExcluirPermanentementeLixeira)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bntExvaziarLixeira)
+                .addGap(19, 19, 19))
+        );
+
+        Agencia.addTab("Listagem", pnlListagem);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,15 +282,15 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Agencia)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(Agencia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -186,14 +303,41 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
             
         String nome = txtNome.getText();
-        String codigo = txtCodigo.getText();
+        double codigo = Double.parseDouble(txtCodigo.getText());
         String endereco = txtEndereco.getText();
         String telefone = txtTelefone.getText();
         String gerente = txtGerente.getText();
         
         
-        JOptionPane.showMessageDialog(null, "Criado a nova Agencia!!!" + "\n" + "\n" + nome + "\n" + codigo + "\n" + endereco + "\n" + telefone + "\n" + gerente);
+        JOptionPane.showMessageDialog(null, "Criado a nova Agencia!!!" +
+                                            "\n" + "\n" + nome + "\n" + 
+                                            codigo + "\n" + endereco + "\n" +  
+                                            telefone + "\n" + gerente);
+        
+        Agencia a2 = new Agencia();
+        a2.setnome(nome);
+        a2.setCodigo(codigo);
+        a2.setEndereco(endereco);
+        a2.setTelefone(telefone);
+        a2.setGerente(gerente);
+        
+        new AgenciaRepository().saveOrUpdate(a2);
+        
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnExlcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExlcluirActionPerformed
+
+    private void radPresentesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresentesItemStateChanged
+        
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            enableTrash(false);
+            
+            modelAgencia
+        }
+    }//GEN-LAST:event_radPresentesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -231,18 +375,35 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane Agencia;
+    private javax.swing.JButton bntExcluirPermanentementeLixeira;
+    private javax.swing.JButton bntExvaziarLixeira;
+    private javax.swing.JButton bntRestaurarLixeira;
+    private javax.swing.JButton btnExlcluir;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JLabel lblAgencia;
+    private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblBemVindoBancoPOO;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblGerente;
+    private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JList<String> lstAgencia;
+    private javax.swing.JPanel pnlCadastro;
+    private javax.swing.JPanel pnlListagem;
+    private javax.swing.JRadioButton radExcluidos;
+    private javax.swing.JRadioButton radPresentes;
+    private javax.swing.JScrollPane scrAgencia;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtGerente;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    private void enableTrash(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
