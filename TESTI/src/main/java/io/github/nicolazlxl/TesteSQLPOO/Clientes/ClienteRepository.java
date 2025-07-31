@@ -41,5 +41,16 @@ public class ClienteRepository extends Repository<Cliente> {
     public String getJpqlDeleteById() {
         return "DELETE FROM Cliente a WHERE a.id = :id";
     }
-   
+    
+    
+   @Override
+    public String getJpqlFindTrash() {
+        return "SELECT a FROM Cliente a WHERE a.ToTrash = true";
+    }
+    
+    
+     @Override
+    public String getJpqlEmptyTrash() {
+        return "DELETE FROM Cliente a WHERE a.ToTrash = true";
+    }
 }

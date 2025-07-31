@@ -31,17 +31,28 @@ public interface IRepository<T> {
     Long saveOrUpdate(T e);
 
     String getJpqlFindAll();
+    
+    String getJpqlFindTrash();
 
     List<T> findAll();
+    
+     List<T> findTrash();
 
     String getJpqlFindById();
 
     T findById(Long id);
 
     String getJpqlDeleteById();
+    
+     public String getJpqlEmptyTrash();
+     
+  
 
     boolean delete(T e);
 
     boolean delete(Long id);
+    
+      boolean EmptyTrash(); 
+    
 
 }

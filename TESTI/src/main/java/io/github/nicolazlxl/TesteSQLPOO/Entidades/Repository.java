@@ -76,6 +76,23 @@ public abstract class Repository<T extends ProjectEntity>
             return query.getResultList();
         }
     }
+    
+     @Override
+      public List<T> findTrash() {
+        // try-with resources
+        try (EntityManager em = DataSourceFactory.getEntityManager()) {
+
+            TypedQuery<T> query = em.createQuery(
+                    // Polimorphism applied
+                    getJpqlFindTrash(),
+                    // Reflection to get .class type
+                    (Class<T>) ((ParameterizedType) getClass()
+                            .getGenericSuperclass())
+                            .getActualTypeArguments()[0]);
+            return query.getResultList();
+        }
+    }
+    
 
     @Override
     public T findById(Long id) {
@@ -152,6 +169,39 @@ public abstract class Repository<T extends ProjectEntity>
 
                 // id definition
                 query.setParameter("id", id);
+
+                // Perform the deletion
+                int deletions = query.executeUpdate();
+
+                tx.commit();
+                return deletions > 0;
+
+            } catch (Exception ex) {
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                    throw ex;
+                }
+            }
+
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean EmptyTrash() {
+
+        // With JPQL version
+        try (EntityManager em = DataSourceFactory.getEntityManager()) {
+
+            EntityTransaction tx = em.getTransaction();
+            try {
+                tx.begin();
+
+                // No need for a typed query
+                Query query = em.createQuery(getJpqlEmptyTrash());
+
+                // id definition
+                //query.setParameter("id", id);
 
                 // Perform the deletion
                 int deletions = query.executeUpdate();

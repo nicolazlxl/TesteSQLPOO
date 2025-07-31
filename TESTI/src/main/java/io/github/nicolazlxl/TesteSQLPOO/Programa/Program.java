@@ -42,9 +42,9 @@ public class Program {
     public static void main(String[] args) {
         // Object to be persisted
         
-        
         Cliente c1 = new Cliente();
-         Cliente c2 = new Cliente();
+        Cliente c2 = new Cliente();
+        Cliente c3 = new Cliente();
         Agencia a1 = new Agencia();
         Conta con = new Conta();
         
@@ -64,6 +64,11 @@ public class Program {
         c2.setEmail("maria@yahoo.com");
         c2.setIdade(52);
         
+        c3.setNome("Luigi");
+        c3.setCpf("36");
+        c3.setEmail("yahoo.com");
+        c3.setIdade(25);
+        
         
         a1.setCodigo(40028922);
         a1.setEndereco("lugardobanco");
@@ -79,39 +84,31 @@ public class Program {
        
          
         repositoryC.saveOrUpdate(c1);
-         repositoryC.saveOrUpdate(c2);
+        repositoryC.saveOrUpdate(c2);
+        repositoryC.saveOrUpdate(c3);
         repositoryA.saveOrUpdate(a1);
         repositoryCon.saveOrUpdate(con);
+        
+        
+        
         
          List<Cliente> clientes = repositoryC.findAll();
         
         for (Cliente cliente : clientes) {
             System.out.println(">> " + cliente);
         }
-        
-        System.out.println("___________________________________");
-        
-         c2.setEmail("maria@gmail.com");
-         repositoryC.saveOrUpdate(c2);
-         
-         
-         clientes = repositoryC.findAll();
+              
+    
+         c3.setToTrash(true);
+         repositoryC.saveOrUpdate(c3);
+       
+         clientes = repositoryC.findTrash();
          
           for (Cliente cliente : clientes) {
             System.out.println(">> " + cliente);
         }
         
-         System.out.println("___________________________________");
-        
-       repositoryC.delete(c1);
-       
-       
-       clientes = repositoryC.findAll();
-         
-          for (Cliente cliente : clientes) {
-            System.out.println(">> " + cliente);
-        }
-        
-        
+       repositoryC.EmptyTrash();
+ 
     }
 }

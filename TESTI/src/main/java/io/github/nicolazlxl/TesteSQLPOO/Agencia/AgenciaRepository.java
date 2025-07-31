@@ -29,4 +29,15 @@ public class AgenciaRepository extends Repository<Agencia>{
     public String getJpqlDeleteById() {
         return "DELETE FROM Agencia a WHERE a.id = :id";
     }
+   
+     @Override
+    public String getJpqlFindTrash() {
+        return "DELETE FROM Agencia a WHERE  a.ToTrash = true";
+    }
+    
+     @Override
+    public String getJpqlEmptyTrash() {
+        return "DELETE FROM Agencia a WHERE a.ToTrash = true";
+    }
+    
 }

@@ -34,8 +34,18 @@ public class ProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private boolean ToTrash;
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+
+    public boolean getToTrash() {
+        return ToTrash;
+    }
+
+    public void setToTrash(boolean ToTrash) {
+        this.ToTrash = ToTrash;
+    }
+    
     public Long getId() {
         return id;
     }

@@ -21,10 +21,20 @@ public class ContaRepository
     public String getJpqlFindById() {
         return "SELECT a FROM Conta a WHERE a.id = :id";
     }
+    
+     @Override
+    public String getJpqlFindTrash() {
+        return "SELECT a FROM Conta a WHERE a.ToTrash = true";
+    }
 
     @Override
     public String getJpqlDeleteById() {
         return "DELETE FROM Conta a WHERE a.id = :id";
+    }
+    
+     @Override
+    public String getJpqlEmptyTrash() {
+        return "DELETE FROM Conta a WHERE a.ToTrash = true";
     }
     
 }

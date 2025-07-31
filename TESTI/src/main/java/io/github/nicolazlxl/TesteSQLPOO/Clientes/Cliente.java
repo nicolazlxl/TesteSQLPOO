@@ -94,11 +94,13 @@ public class Cliente
     
     
 //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nome=" + nome + ", Cpf=" + Cpf + ", email=" + email + ", idade=" + idade + '}';
+    }
     
-  
-    
-    
-     
+ 
     
     
 }

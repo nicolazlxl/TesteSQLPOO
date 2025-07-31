@@ -18,6 +18,7 @@ import java.util.Objects;
  *
  * @author taina
  */
+@Entity
 public class Conta 
         extends ProjectEntity
         implements Serializable {

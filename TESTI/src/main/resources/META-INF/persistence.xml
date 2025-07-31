@@ -3,8 +3,8 @@
   <persistence-unit name="bancoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>io.github.nicolazlxl.TesteSQLPOO.Clientes.Cliente</class>
-    <class>io.github.nicolazlxl.TesteSQLPOO.Conta.Conta</class>
     <class>io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia</class>
+    <class>io.github.nicolazlxl.TesteSQLPOO.Conta.Conta</class>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/banco?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;connectTimeout=5000&amp;socketTimeout=10000&amp;useSSL=false&amp;serverTimezone=America/Fortaleza&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
