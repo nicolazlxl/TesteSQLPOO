@@ -4,8 +4,16 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Entidades.DataSourceFactory;
+import io.github.nicolazlxl.TesteSQLPOO.Entidades.IRepository;
+import io.github.nicolazlxl.TesteSQLPOO.Entidades.ProjectEntity;
+import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
+
+
+
+
 import java.awt.event.ItemEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -319,22 +327,27 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         String telefone = txtTelefone.getText();
         String gerente = txtGerente.getText();
         
+        Agencia a2 = new Agencia();
+        AgenciaRepository ARepository = new AgenciaRepository();
         
-        JOptionPane.showMessageDialog(null, """
+        a2.setNome(nome);
+        a2.setCodigo(codigo);
+        a2.setEndereco(endereco);
+        a2.setTelefone(telefone);
+        a2.setGerente(gerente);
+        
+          JOptionPane.showMessageDialog(null, """
                                             Criado a nova Agencia!!!
                                             
                                             """ + nome + "\n" + 
                                             codigo + "\n" + endereco + "\n" +  
                                             telefone + "\n" + gerente);
         
-        Agencia a2 = new Agencia();
-        a2.setnome(nome);
-        a2.setCodigo(codigo);
-        a2.setEndereco(endereco);
-        a2.setTelefone(telefone);
-        a2.setGerente(gerente);
+        ARepository.saveOrUpdate(a2);
         
-        new AgenciaRepository().saveOrUpdate(a2);
+      
+        
+     
         
         
     }//GEN-LAST:event_btnSalvarActionPerformed
