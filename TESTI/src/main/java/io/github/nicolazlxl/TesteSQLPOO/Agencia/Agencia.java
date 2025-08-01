@@ -131,7 +131,12 @@ public class Agencia
 
     @Override
     public String toString() {
-        return "Agencia{" + "codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", gerente=" + gerente + '}';
+        return "Agencia{" 
+                + "codigo=" + codigo 
+                + ", nome=" + nome 
+                + ", endereco=" + endereco 
+                + ", telefone=" + telefone 
+                + ", gerente=" + gerente + '}';
     }
 
     public void setnome(String nome) {

@@ -15,8 +15,10 @@ import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
 
 
 import java.awt.event.ItemEvent;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.LookAndFeel;
 
 /**
  *
@@ -24,15 +26,25 @@ import javax.swing.JOptionPane;
  */
 public class CadastroNovaAgencia extends javax.swing.JFrame {
 
-    //private final DefaultListModel<Agencia> modelAgencia;
-    //private final AgenciaRepository repository;
+    private final DefaultListModel<Agencia> modelAgencia;
+    private final AgenciaRepository repository;
     
     
     /**
      * Creates new form CadastroNovaAgencia
      */
     public CadastroNovaAgencia() {
+        
+        
+        repository = new AgenciaRepository();
+        
+        modelAgencia = new DefaultListModel<>();
+        modelAgencia.addAll(repository.findAll());
         initComponents();
+        
+        lblAlerta.setVisible(false);
+        
+//        DataPickerSettings settings = new DataPickerSetting(Locale.of("pt","BR"));
         
     }
 
@@ -45,6 +57,10 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         Agencia = new javax.swing.JTabbedPane();
         pnlCadastro = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
@@ -198,6 +214,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         lblAgencia.setFont(new java.awt.Font("Constantia", 1, 14)); // NOI18N
         lblAgencia.setText("Agências Cadastradas");
 
+        lstAgencia.setModel(modelAgencia);
         scrAgencia.setViewportView(lstAgencia);
 
         radPresentes.setText("Presentes no Banco de Dados");
@@ -353,7 +370,22 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExlcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcluirActionPerformed
-        // TODO add your handling code here:
+        if(lstAgencia.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma agência");
+            return;
+        }
+        if(lstAgencia.getSelectedIndices().length == 1){
+            Agencia selected = lstAgencia.getSelectedValue();
+            repository.moveToThash(selected);
+            modelAgencia.removeElement(selected);
+            
+        }else{
+            List<Agencia> selection = lstAgencia.getSelectedValuesList();
+            repository.moveToTrash(selection);
+            for(Agencia aux: selection){
+                modelAgencia.removeElement(aux);
+            }
+        }
     }//GEN-LAST:event_btnExlcluirActionPerformed
 
     private void radPresentesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresentesItemStateChanged
@@ -361,8 +393,8 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         if(evt.getStateChange() == ItemEvent.SELECTED){
             enableTrash(false);
             
-           // modelAgencia.clear();
-            //modelAgencia.addAll(repository.findAll());
+            modelAgencia.clear();
+            modelAgencia.addAll(repository.findAll());
         }
     }//GEN-LAST:event_radPresentesItemStateChanged
 
@@ -371,8 +403,8 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         if(evt.getStateChange() == ItemEvent.SELECTED){
             enableTrash(true);
             
-            // modelAgencia.clear();
-            //modelAgencia.addAll(repository.loadFromTrash());
+             modelAgencia.clear();
+            modelAgencia.addAll(repository.loadFromTrash());
         }
     }//GEN-LAST:event_radExcluidosItemStateChanged
 
@@ -409,6 +441,18 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
                 new CadastroNovaAgencia().setVisible(true);
             }
         });
+        
+//        LookAndFeel[] lafs = new LookAndFeel[]{
+//            new FlatLightlaf();
+//        };
+//
+//        for(LookAndFeel laf: lafs){
+//            try{
+//
+//
+//            }
+//        }
+//        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,6 +462,10 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton btnExlcluir;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JLabel lblAgencia;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblBemVindoBancoPOO;
@@ -427,7 +475,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JList<String> lstAgencia;
+    private javax.swing.JList<Agencia> lstAgencia;
     private javax.swing.JPanel pnlCadastro;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidos;
@@ -441,6 +489,10 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void enableTrash(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void showWarning(String selecione_ao_menos_uma_agência) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

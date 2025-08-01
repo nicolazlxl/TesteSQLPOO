@@ -6,6 +6,7 @@ package io.github.nicolazlxl.TesteSQLPOO.Agencia;
 
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 import java.util.Collection;
+import java.util.List;
 /**
  *
  * @author Sarah
@@ -42,6 +43,14 @@ public class AgenciaRepository extends Repository<Agencia>{
     }
 
     public Collection<? extends Agencia> loadFromTrash() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void moveToThash(Agencia selected) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void moveToTrash(List<Agencia> selection) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
