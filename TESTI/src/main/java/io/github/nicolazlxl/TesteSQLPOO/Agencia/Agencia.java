@@ -86,9 +86,60 @@ public class Agencia
     }
 //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="HashCode/equals">
+    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.codigo) ^ (Double.doubleToLongBits(this.codigo) >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + Objects.hashCode(this.endereco);
+        hash = 29 * hash + Objects.hashCode(this.telefone);
+        hash = 29 * hash + Objects.hashCode(this.gerente);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Agencia other = (Agencia) obj;
+        if (Double.doubleToLongBits(this.codigo) != Double.doubleToLongBits(other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        return Objects.equals(this.gerente, other.gerente);
+    }
+    
+//</editor-fold>    
+
     @Override
     public String toString() {
         return "Agencia{" + "codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", gerente=" + gerente + '}';
+    }
+
+    public void setnome(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setCodigo(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

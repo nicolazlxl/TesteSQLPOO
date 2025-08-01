@@ -46,6 +46,8 @@ public class Program {
         Cliente c2 = new Cliente();
         Cliente c3 = new Cliente();
         Agencia a1 = new Agencia();
+        Agencia a2 = new Agencia();
+        Agencia a3 = new Agencia();
         Conta con = new Conta();
         
          ClienteRepository repositoryC = new ClienteRepository();
@@ -76,6 +78,19 @@ public class Program {
         a1.setNome("Bancao");
         a1.setTelefone("0800");
         
+        a2.setCodigo(546523255);
+        a2.setEndereco("Banco nuBanco");
+        a2.setGerente("Gera");
+        a2.setNome("Bancaso");
+        a2.setTelefone("123568");
+        
+        a3.setCodigo(4544215);
+        a3.setEndereco("Banco lesse");
+        a3.setGerente("Luiza");
+        a3.setNome("Bank");
+        a3.setTelefone("565653");
+        
+        
         con.setDataCriacao(LocalDate.of(2024,10,25));
         con.setLimiteDiariSaque(1000);
         con.setNumero(4321);
@@ -87,6 +102,8 @@ public class Program {
         repositoryC.saveOrUpdate(c2);
         repositoryC.saveOrUpdate(c3);
         repositoryA.saveOrUpdate(a1);
+        repositoryA.saveOrUpdate(a2);
+        repositoryA.saveOrUpdate(a3);
         repositoryCon.saveOrUpdate(con);
         
         

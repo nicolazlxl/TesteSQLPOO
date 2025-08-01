@@ -7,6 +7,7 @@ package io.github.nicolazlxl.TesteSQLPOO.gui;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
 import java.awt.event.ItemEvent;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +16,16 @@ import javax.swing.JOptionPane;
  */
 public class CadastroNovaAgencia extends javax.swing.JFrame {
 
+    //private final DefaultListModel<Agencia> modelAgencia;
+    //private final AgenciaRepository repository;
+    
+    
     /**
      * Creates new form CadastroNovaAgencia
      */
     public CadastroNovaAgencia() {
         initComponents();
+        
     }
 
     /**
@@ -194,6 +200,11 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         });
 
         radExcluidos.setText("Excluidos");
+        radExcluidos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radExcluidosItemStateChanged(evt);
+            }
+        });
 
         btnExlcluir.setBackground(new java.awt.Color(0, 153, 153));
         btnExlcluir.setText("Excluir");
@@ -309,8 +320,10 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         String gerente = txtGerente.getText();
         
         
-        JOptionPane.showMessageDialog(null, "Criado a nova Agencia!!!" +
-                                            "\n" + "\n" + nome + "\n" + 
+        JOptionPane.showMessageDialog(null, """
+                                            Criado a nova Agencia!!!
+                                            
+                                            """ + nome + "\n" + 
                                             codigo + "\n" + endereco + "\n" +  
                                             telefone + "\n" + gerente);
         
@@ -335,9 +348,20 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         if(evt.getStateChange() == ItemEvent.SELECTED){
             enableTrash(false);
             
-            modelAgencia
+           // modelAgencia.clear();
+            //modelAgencia.addAll(repository.findAll());
         }
     }//GEN-LAST:event_radPresentesItemStateChanged
+
+    private void radExcluidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radExcluidosItemStateChanged
+        
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            enableTrash(true);
+            
+            // modelAgencia.clear();
+            //modelAgencia.addAll(repository.loadFromTrash());
+        }
+    }//GEN-LAST:event_radExcluidosItemStateChanged
 
     /**
      * @param args the command line arguments
