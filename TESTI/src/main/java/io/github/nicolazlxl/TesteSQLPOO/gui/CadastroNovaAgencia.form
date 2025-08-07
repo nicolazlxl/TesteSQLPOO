@@ -255,11 +255,6 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pnlListagem">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Listagem">
@@ -400,6 +395,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restaurar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Restau"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bntExcluirPermanentementeLixeira">
               <Properties>
@@ -416,6 +414,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Esvaziar Lixeira"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEsvaziarLixeira"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAlerta">
               <Properties>
@@ -424,9 +425,6 @@
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Constantia" size="14" style="3"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Selecione uma Ag&#xea;ncia"/>

@@ -241,8 +241,6 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
 
         Agencia.addTab("Cadastro Agência", pnlCadastro);
 
-        pnlListagem.setForeground(new java.awt.Color(0, 0, 0));
-
         lblAgencia.setFont(new java.awt.Font("Constantia", 1, 14)); // NOI18N
         lblAgencia.setText("Agências Cadastradas");
 
@@ -276,16 +274,25 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
 
         bntRestaurarLixeira.setBackground(new java.awt.Color(0, 153, 153));
         bntRestaurarLixeira.setText("Restaurar");
+        bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Restau(evt);
+            }
+        });
 
         bntExcluirPermanentementeLixeira.setBackground(new java.awt.Color(0, 102, 102));
         bntExcluirPermanentementeLixeira.setText("Excluir Permanentemente");
 
         bntExvaziarLixeira.setBackground(new java.awt.Color(0, 51, 51));
         bntExvaziarLixeira.setText("Esvaziar Lixeira");
+        bntExvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsvaziarLixeira(evt);
+            }
+        });
 
         lblAlerta.setBackground(new java.awt.Color(0, 255, 153));
         lblAlerta.setFont(new java.awt.Font("Constantia", 3, 14)); // NOI18N
-        lblAlerta.setForeground(new java.awt.Color(0, 0, 0));
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione uma Agência");
         lblAlerta.setOpaque(true);
@@ -396,8 +403,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         
       
         
-     
-        
+    
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -417,18 +423,23 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
           
              repository.saveOrUpdate(selecionada);
             
-            /*repository.moveToThash(selected);
-            modelAgencia.removeElement(selected);*/
+            modelAgencia.removeElement(selecionada);
+            
             
         }else{
             List<Agencia> selection = lstAgencia.getSelectedValuesList();
-            repository.moveToTrash(selection);
+            
             for(Agencia aux: selection){
+                
+                aux.setToTrash(true);
+          
+             repository.saveOrUpdate(aux);
                 modelAgencia.removeElement(aux);
             }
         }
     }//GEN-LAST:event_btnExlcluirActionPerformed
 
+ 
     private void radPresentesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresentesItemStateChanged
         
         if(evt.getStateChange() == ItemEvent.SELECTED){
@@ -448,6 +459,48 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             modelAgencia.addAll(repository.findTrash());
         }
     }//GEN-LAST:event_radExcluidosItemStateChanged
+
+    private void Restau(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restau
+       
+           if(lstAgencia.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma agência");
+            return;
+        }
+        if(lstAgencia.getSelectedIndices().length == 1){
+            
+            
+             List<Agencia> selection = lstAgencia.getSelectedValuesList();
+             
+             Agencia selecionada = selection.getFirst();
+             
+             selecionada.setToTrash(false);
+          
+             repository.saveOrUpdate(selecionada);
+            
+            modelAgencia.removeElement(selecionada);
+            
+            
+        }else{
+            List<Agencia> selection = lstAgencia.getSelectedValuesList();
+            
+            for(Agencia aux: selection){
+                
+                aux.setToTrash(false);
+          
+             repository.saveOrUpdate(aux);
+                modelAgencia.removeElement(aux);
+            }
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_Restau
+
+    private void btnEsvaziarLixeira(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsvaziarLixeira
+      repository.EmptyTrash();
+    }//GEN-LAST:event_btnEsvaziarLixeira
 
     /**
      * @param args the command line arguments
