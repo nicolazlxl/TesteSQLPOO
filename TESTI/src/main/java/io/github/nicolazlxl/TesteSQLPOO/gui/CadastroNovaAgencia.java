@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.LookAndFeel;
@@ -406,9 +407,18 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             return;
         }
         if(lstAgencia.getSelectedIndices().length == 1){
-            Agencia selected = lstAgencia.getSelectedValue();
-            repository.moveToThash(selected);
-            modelAgencia.removeElement(selected);
+            
+            
+             List<Agencia> selection = lstAgencia.getSelectedValuesList();
+             
+             Agencia selecionada = selection.getFirst();
+             
+             selecionada.setToTrash(true);
+          
+             repository.saveOrUpdate(selecionada);
+            
+            /*repository.moveToThash(selected);
+            modelAgencia.removeElement(selected);*/
             
         }else{
             List<Agencia> selection = lstAgencia.getSelectedValuesList();
@@ -435,7 +445,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             enableTrash(true);
             
              modelAgencia.clear();
-            modelAgencia.addAll(repository.loadFromTrash());
+            modelAgencia.addAll(repository.findTrash());
         }
     }//GEN-LAST:event_radExcluidosItemStateChanged
 

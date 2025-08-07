@@ -19,7 +19,7 @@ public class AgenciaRepository extends Repository<Agencia>{
      */
     @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Agencia a";
+        return "SELECT a FROM Agencia a WHERE a.ToTrash = false";
     }
 
     @Override
@@ -29,12 +29,12 @@ public class AgenciaRepository extends Repository<Agencia>{
 
     @Override
     public String getJpqlDeleteById() {
-        return "DELETE FROM Agencia a WHERE a.id = :id";
+        return "DELETE a FROM Agencia a WHERE a.id = :id";
     }
    
      @Override
     public String getJpqlFindTrash() {
-        return "DELETE FROM Agencia a WHERE  a.ToTrash = true";
+        return "SELECT a FROM Agencia a WHERE a.ToTrash = true";
     }
     
      @Override
@@ -46,12 +46,5 @@ public class AgenciaRepository extends Repository<Agencia>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void moveToThash(Agencia selected) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void moveToTrash(List<Agencia> selection) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+  
 }

@@ -219,5 +219,25 @@ public abstract class Repository<T extends ProjectEntity>
             return false;
         }
     }
+    
+    
+     @Override
+     public void moveToTrash(List<T> selection){
+     
+        for(T var : selection){
+
+        var.setToTrash(true);
+
+        }
+     
+     }
+     
+     
+      @Override
+     public void moveToThash(T selection){
+     
+        selection.setToTrash(true);
+     
+     }
 
 }

@@ -44,15 +44,17 @@ public interface IRepository<T> {
 
     String getJpqlDeleteById();
     
-     public String getJpqlEmptyTrash();
+    String getJpqlEmptyTrash();
      
-  
-
     boolean delete(T e);
 
     boolean delete(Long id);
     
       boolean EmptyTrash(); 
+      
+      void moveToTrash(List<T> selection);
+      
+      void moveToThash(T selection);
     
 
 }

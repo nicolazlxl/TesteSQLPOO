@@ -32,7 +32,6 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private void initComponents() {
 
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton2 = new javax.swing.JButton();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroConta = new javax.swing.JPanel();
         lblNumero = new javax.swing.JLabel();
@@ -48,26 +47,8 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         pnlListagem = new javax.swing.JPanel();
-        lblContas = new javax.swing.JLabel();
-        scrContas = new javax.swing.JScrollPane();
-        lstContas = new javax.swing.JList<>();
-        radNaoExcluidos = new javax.swing.JRadioButton();
-        radExcluidos = new javax.swing.JRadioButton();
-        bntExcluir = new javax.swing.JButton();
-        lblLixeira = new javax.swing.JLabel();
-        bntRestaurarLixeira = new javax.swing.JButton();
-        bntExcluirLixeira = new javax.swing.JButton();
-        bntEsvaziarLixeira = new javax.swing.JButton();
-        lblAlerta = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
-
-        jButton2.setText("Restaurar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Conta");
@@ -124,7 +105,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                                     .addComponent(txtStatus)
                                     .addComponent(txtDataCriacao)
                                     .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         pnlCadastroContaLayout.setVerticalGroup(
             pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,120 +130,25 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDataCriacao)
                     .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLimiteDiarioSaque)
                     .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalvar))
         );
 
         tabPrincipal.addTab("Cadastrar Conta", pnlCadastroConta);
 
-        lblContas.setText("Contas:");
-
-        scrContas.setViewportView(lstContas);
-
-        radNaoExcluidos.setText("Não excluídos");
-        radNaoExcluidos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                radNaoExcluidosItemStateChanged(evt);
-            }
-        });
-
-        radExcluidos.setText("Excluídos");
-        radExcluidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radExcluidosActionPerformed(evt);
-            }
-        });
-
-        bntExcluir.setText("Excluir");
-        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntExcluirActionPerformed(evt);
-            }
-        });
-
-        lblLixeira.setText("Lixeira:");
-
-        bntRestaurarLixeira.setText("Restaurar");
-
-        bntExcluirLixeira.setText("Excluir");
-
-        bntEsvaziarLixeira.setText("Esvaziar");
-
-        lblAlerta.setBackground(new java.awt.Color(255, 51, 51));
-        lblAlerta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblAlerta.setForeground(new java.awt.Color(255, 255, 255));
-        lblAlerta.setText("Selecione uma conta!");
-        lblAlerta.setOpaque(true);
-        lblAlerta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAlertaMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlListagemLayout = new javax.swing.GroupLayout(pnlListagem);
         pnlListagem.setLayout(pnlListagemLayout);
         pnlListagemLayout.setHorizontalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListagemLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblContas)
-                        .addGap(113, 113, 113)
-                        .addComponent(lblAlerta))
-                    .addComponent(scrContas, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblLixeira)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListagemLayout.createSequentialGroup()
-                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlListagemLayout.createSequentialGroup()
-                                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radNaoExcluidos)
-                                    .addComponent(radExcluidos))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlListagemLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(bntExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlListagemLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(371, 371, 371))))
+            .addGap(0, 377, Short.MAX_VALUE)
         );
         pnlListagemLayout.setVerticalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListagemLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblContas)
-                    .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(radNaoExcluidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radExcluidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntRestaurarLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntExcluirLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bntEsvaziarLixeira))
-                    .addComponent(scrContas, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
         tabPrincipal.addTab("Listagem", pnlListagem);
@@ -273,7 +159,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -289,24 +175,21 @@ public class CadastroNovaConta extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        
         double numero = Double.parseDouble (txtNumero.getText());
-        double saldo = Double.parseDouble (txtSaldo.getText());
+        double saldo = Double.parseDouble (txtNumero.getText());
         String status = txtStatus.getText();
         LocalDate dataCriacao = LocalDate.parse(txtDataCriacao.getText());
-        double limiteDiariSaque = Double.parseDouble (txtLimiteDiarioSaque.getText());
+        double limiteDiariSaque = Double.parseDouble (txtNumero.getText());
         
         //JOptionPane.showMessageDialog(this,"Conta Cadastrada com Sucesso");
         JOptionPane.showMessageDialog(this, "Conta Cadastrada!" + "\n"
-                                            +"Numero: "+ numero + "\n" 
-                                            +"Saldo: " + saldo + "\n" 
-                                            +"Status: " + status + "\n" 
-                                            +"Data Criação: " + dataCriacao + "\n" 
-                                            +"Limite Diário de Saque:" + limiteDiariSaque);
-         
-        Conta c1 = new Conta();
-        ContaRepository CRepository = new ContaRepository();
+                                            + numero + "\n" 
+                                            + saldo + "\n" 
+                                            + status + "\n" 
+                                            + dataCriacao + "\n" 
+                                            + limiteDiariSaque);
         
+        Conta c1 = new Conta();
         c1.setNumero(numero);
         c1.setSaldo(saldo);
         c1.setStatus(status);
@@ -315,26 +198,6 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         
         new ContaRepository().saveOrUpdate(c1);
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radExcluidosActionPerformed
-
-    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bntExcluirActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void lblAlertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlertaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblAlertaMouseClicked
-
-    private void radNaoExcluidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radNaoExcluidosItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radNaoExcluidosItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -372,28 +235,16 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntEsvaziarLixeira;
-    private javax.swing.JButton bntExcluir;
-    private javax.swing.JButton bntExcluirLixeira;
-    private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel lblAlerta;
-    private javax.swing.JLabel lblContas;
     private javax.swing.JLabel lblDataCriacao;
     private javax.swing.JLabel lblLimiteDiarioSaque;
-    private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lstContas;
     private javax.swing.JPanel pnlCadastroConta;
     private javax.swing.JPanel pnlListagem;
-    private javax.swing.JRadioButton radExcluidos;
-    private javax.swing.JRadioButton radNaoExcluidos;
-    private javax.swing.JScrollPane scrContas;
     private javax.swing.JTabbedPane tabPrincipal;
     private javax.swing.JTextField txtDataCriacao;
     private javax.swing.JTextField txtLimiteDiarioSaque;
