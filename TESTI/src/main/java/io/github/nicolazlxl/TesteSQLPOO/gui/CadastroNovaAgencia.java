@@ -10,15 +10,22 @@ import io.github.nicolazlxl.TesteSQLPOO.Entidades.ProjectEntity;
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.Agencia;
 import io.github.nicolazlxl.TesteSQLPOO.Agencia.AgenciaRepository;
+import java.awt.Font;
 
 
 
 
 import java.awt.event.ItemEvent;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.LookAndFeel;
+import javax.swing.Timer;
+import static org.hibernate.Hibernate.set;
 
 /**
  *
@@ -43,8 +50,32 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         initComponents();
         
         lblAlerta.setVisible(false);
+                
+           
         
-//        DataPickerSettings settings = new DataPickerSetting(Locale.of("pt","BR"));
+//        DataPickerSettings settings = new DataPickerSettings(Locale.of("pt","BR"));
+//        
+//        settings.setFormatForDatesCommonEra(
+//            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//          settings.setFortmatForDatesBeforeCommonEra(
+//            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//          
+//        settings.setTranslationToday("Hoje");
+//        settings.setTranslationClear("Limpar");
+//        
+//        Font defaultFont = txtNome.getFont();
+//        
+//        settings.setFontValidDate(defaultFont);
+//        settings.setFontIvalidDate(defaultFont);
+//        settings.setFontVetoedDate(defaultFont);
+        
+//        dtpNascimento.setSettings(settings);
+//        
+//        settings.setDateRangeLimits(LocalDate.MIN, LocalDate.now());
+//        
+        
+        
+    
         
     }
 
@@ -448,11 +479,13 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
 //
 //        for(LookAndFeel laf: lafs){
 //            try{
-//
-//
-//            }
+//                  UIManager.setLookAndFeel(laf);
+//                  CadastroNovaAgencia frame = new CadastroNovaAgencia();
+//                  frame.setTitle(frame.getTitle() + "::" + laf.getName());
+//            }catch(UnsupportedLookAndFeelException ex){
+//               System.getLogger(CadastroNovaAgencia.class.getNome()).log(System.Logger.Level.ERRO, (String) null,ex);
 //        }
-//        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -488,11 +521,83 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-    private void enableTrash(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void enableTrash(boolean status) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+          btnExlcluir.setEnabled(!status);
+          //btnRestaurarLixeira.setEnabled(status);
+          //btnExcluirLixeira.setEnabled(status);
+          //btnExvaziarLixeira.setEnabled(status);
+          
     }
 
-    private void showWarning(String selecione_ao_menos_uma_agência) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void showWarning(String warning) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+          lblAlerta.setText(warning);
+          lblAlerta.setVisible(true);
+          
+          Timer timer = new Timer(4000, (e) -> {
+              lblAlerta.setVisible(false);
+              ((Timer) e.getSource()).stop();
+          });
+          
+          timer.setRepeats(false);
+          timer.start();
     }
+    
+    public void clearFilds(){
+        txtNome.setText(null);
+        //chkAtivo.setSelected(true);
+        txtNome.requestFocus();
+        
+    }
+
+//    private static class chkAtivo {
+//
+//        private static void setSelected(boolean b) {
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        }
+//
+//        public chkAtivo() {
+//        }
+//    }
+
+    private static class DataPickerSettings {
+
+        public DataPickerSettings() {
+        }
+
+        private DataPickerSettings(Locale of) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setFormatForDatesCommonEra(DateTimeFormatter ofPattern) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setFortmatForDatesBeforeCommonEra(DateTimeFormatter ofPattern) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setTranslationToday(String hoje) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setTranslationClear(String limpar) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setFontValidDate(Font defaultFont) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setFontIvalidDate(Font defaultFont) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private void setFontVetoedDate(Font defaultFont) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
+
+    
 }
