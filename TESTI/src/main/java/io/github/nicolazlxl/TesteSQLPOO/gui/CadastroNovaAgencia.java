@@ -76,7 +76,6 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
 //        
         
         
-    
         
     }
 
@@ -90,9 +89,9 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
         Agencia = new javax.swing.JTabbedPane();
         pnlCadastro = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
@@ -119,6 +118,19 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         bntExcluirPermanentementeLixeira = new javax.swing.JButton();
         bntExvaziarLixeira = new javax.swing.JButton();
         lblAlerta = new javax.swing.JLabel();
+
+        jScrollPane1.setViewportView(jTextPane1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Agencia");
@@ -180,27 +192,24 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
                                 .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtNome)))
+                            .addComponent(txtNome)
+                            .addComponent(txtCodigo)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlCadastroLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlCadastroLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEndereco)
-                                    .addComponent(txtTelefone)
-                                    .addComponent(txtGerente))))
-                        .addGap(6, 6, 6)))
-                .addContainerGap())
+                            .addComponent(lblGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEndereco)
+                            .addComponent(txtTelefone)
+                            .addComponent(txtGerente))))
+                .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(lblBemVindoBancoPOO, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,17 +256,29 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         lstAgencia.setModel(modelAgencia);
         scrAgencia.setViewportView(lstAgencia);
 
+        buttonGroup1.add(radPresentes);
         radPresentes.setText("Presentes no Banco de Dados");
         radPresentes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 radPresentesItemStateChanged(evt);
             }
         });
+        radPresentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radPresentesActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluidos");
         radExcluidos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 radExcluidosItemStateChanged(evt);
+            }
+        });
+        radExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidosActionPerformed(evt);
             }
         });
 
@@ -280,10 +301,15 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             }
         });
 
-        bntExcluirPermanentementeLixeira.setBackground(new java.awt.Color(0, 102, 102));
+        bntExcluirPermanentementeLixeira.setBackground(new java.awt.Color(0, 153, 153));
         bntExcluirPermanentementeLixeira.setText("Excluir Permanentemente");
+        bntExcluirPermanentementeLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirPermanentementeLixeiraActionPerformed(evt);
+            }
+        });
 
-        bntExvaziarLixeira.setBackground(new java.awt.Color(0, 51, 51));
+        bntExvaziarLixeira.setBackground(new java.awt.Color(0, 153, 153));
         bntExvaziarLixeira.setText("Esvaziar Lixeira");
         bntExvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,7 +346,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
                             .addComponent(btnExlcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         pnlListagemLayout.setVerticalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +363,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExlcluir)))
                 .addGap(12, 12, 12)
-                .addComponent(lblAlerta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAlerta, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLixeira)
                 .addGap(17, 17, 17)
@@ -403,8 +429,6 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         
       
         
-    
-        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExlcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExlcluirActionPerformed
@@ -442,22 +466,13 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
  
     private void radPresentesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresentesItemStateChanged
         
-        if(evt.getStateChange() == ItemEvent.SELECTED){
-            enableTrash(false);
-            
-            modelAgencia.clear();
-            modelAgencia.addAll(repository.findAll());
-        }
+  
+        
     }//GEN-LAST:event_radPresentesItemStateChanged
 
     private void radExcluidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radExcluidosItemStateChanged
         
-        if(evt.getStateChange() == ItemEvent.SELECTED){
-            enableTrash(true);
-            
-             modelAgencia.clear();
-            modelAgencia.addAll(repository.findTrash());
-        }
+   
     }//GEN-LAST:event_radExcluidosItemStateChanged
 
     private void Restau(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restau
@@ -491,16 +506,65 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
                 modelAgencia.removeElement(aux);
             }
         }
-        
-        
-        
-        
-        
+ 
     }//GEN-LAST:event_Restau
 
     private void btnEsvaziarLixeira(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsvaziarLixeira
-      repository.EmptyTrash();
+         repository.EmptyTrash();
+         modelAgencia.clear();
+         showWarning("Lixeira esvaziada");
     }//GEN-LAST:event_btnEsvaziarLixeira
+
+    private void bntExcluirPermanentementeLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirPermanentementeLixeiraActionPerformed
+       
+            if(lstAgencia.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma agência");
+            return;
+        }
+        if(lstAgencia.getSelectedIndices().length == 1){
+            
+            
+             List<Agencia> selection = lstAgencia.getSelectedValuesList();
+             
+             Agencia selecionada = selection.getFirst();
+             
+             repository.delete(selecionada);
+            
+            modelAgencia.removeElement(selecionada);
+             showWarning("Agencia deletada");
+            
+        }else{
+            List<Agencia> selection = lstAgencia.getSelectedValuesList();
+            
+            for(Agencia aux: selection){
+                
+              showWarning("Agencias deletadas");
+          
+                repository.delete(aux);
+                modelAgencia.removeElement(aux);
+            }
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_bntExcluirPermanentementeLixeiraActionPerformed
+
+    private void radPresentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresentesActionPerformed
+        
+            enableTrash(false);
+            
+            modelAgencia.clear();
+            modelAgencia.addAll(repository.findAll());
+        
+    }//GEN-LAST:event_radPresentesActionPerformed
+
+    private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
+            enableTrash(true);
+           
+            modelAgencia.clear();
+            modelAgencia.addAll(repository.findTrash());
+    }//GEN-LAST:event_radExcluidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,6 +597,8 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CadastroNovaAgencia().setVisible(true);
+                 
+    
             }
         });
         
@@ -559,9 +625,9 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private javax.swing.JButton btnExlcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lblAgencia;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblBemVindoBancoPOO;
@@ -587,12 +653,21 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private void enableTrash(boolean status) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
           btnExlcluir.setEnabled(!status);
-          //btnRestaurarLixeira.setEnabled(status);
-          //btnExcluirLixeira.setEnabled(status);
-          //btnExvaziarLixeira.setEnabled(status);
           
+          bntExcluirPermanentementeLixeira.setEnabled(status);
+          bntExvaziarLixeira.setEnabled(status);
+          bntRestaurarLixeira.setEnabled(status);
     }
 
+    private void Switchancy(boolean status) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     
+        //radExcluidos.setEnabled(status);
+       // radPresentes.setEnabled(!status);
+
+
+    }
+    
     private void showWarning(String warning) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
           lblAlerta.setText(warning);
@@ -606,6 +681,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
           timer.setRepeats(false);
           timer.start();
     }
+    
     
     public void clearFilds(){
         txtNome.setText(null);
