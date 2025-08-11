@@ -322,7 +322,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
         
-        double numero = Double.parseDouble (txtNumero.getText());
+        String numero = txtNumero.getText();
         double saldo = Double.parseDouble (txtSaldo.getText());
         String status = txtStatus.getText();
         LocalDate dataCriacao = LocalDate.parse(txtDataCriacao.getText());
