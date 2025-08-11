@@ -4,17 +4,35 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Funcionario.Funcionario;
+import io.github.nicolazlxl.TesteSQLPOO.Funcionario.FuncionarioRepository;
+
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author taina
  */
 public class CadastroNovoFuncionario extends javax.swing.JFrame {
 
+    
+    private final DefaultListModel<Funcionario> modelFuncio;
+    private final FuncionarioRepository repository;
+    
+    
+    
     /**
      * Creates new form CdastroNovoFuncionario
      */
     public CadastroNovoFuncionario() {
+          repository = new FuncionarioRepository();
+        
+        modelFuncio = new DefaultListModel<>();
+        modelFuncio.addAll(repository.findAll());
         initComponents();
+        
     }
 
     /**
@@ -27,6 +45,7 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroFuncionario = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -71,6 +90,11 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
         lblSituacao.setText("Situação:");
 
         bntSalvar.setText("Salvar");
+        bntSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCadastroFuncionarioLayout = new javax.swing.GroupLayout(pnlCadastroFuncionario);
         pnlCadastroFuncionario.setLayout(pnlCadastroFuncionarioLayout);
@@ -129,21 +153,54 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
 
         lblFuncionarios.setText("Funcionários:");
 
+        lztFuncionarios.setModel(modelFuncio);
         scrFuncionarios.setViewportView(lztFuncionarios);
 
+        buttonGroup1.add(radNaoExcluidos);
         radNaoExcluidos.setText("Não Excluídos");
+        radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radNaoExcluidosActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluídos");
+        radExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidosActionPerformed(evt);
+            }
+        });
 
         bntExcluir.setText("Excluir");
+        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirActionPerformed(evt);
+            }
+        });
 
         lblLixeira.setText("Lixeira:");
 
         bntRestaurarLixeira.setText("Restaurar");
+        bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRestaurarLixeiraActionPerformed(evt);
+            }
+        });
 
         bntExcluirLixeira.setText("Excluir");
+        bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         bntEsvaziarLixeira.setText("Esvaziar");
+        bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntEsvaziarLixeiraActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 102, 102));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -224,6 +281,125 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
+        // TODO add your handling code here:
+         
+         String Cargo= txtCargo.getText();
+         String Id = txtId.getText();
+         String nome = txtNome.getText();
+         String ativo = txtSituacao.getText();
+            
+            Funcionario F = new Funcionario();
+        
+            F.setCargo(Cargo);
+            F.setIdent(Id);
+            F.setNome(nome);
+            F.setAtivo(ativo == "ativo"? true : false );
+            
+          JOptionPane.showMessageDialog(null, """
+                                            Cliente Salvo
+                                           
+                                            """ + nome + "\n" + 
+                                            Id + "\n" +Cargo + "\n" +  
+                                            ativo);
+        
+        repository.saveOrUpdate(F);
+        
+        
+     
+    }//GEN-LAST:event_bntSalvarActionPerformed
+
+    private void radNaoExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNaoExcluidosActionPerformed
+        // TODO add your handling code here:
+        
+        
+         enableTrash(false);
+            modelFuncio.clear();
+            modelFuncio.addAll(repository.findAll());
+    }//GEN-LAST:event_radNaoExcluidosActionPerformed
+
+    private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
+        // TODO add your handling code here:
+        
+        
+          enableTrash(true);
+            modelFuncio.clear();
+            modelFuncio.addAll(repository.findTrash());
+        
+    }//GEN-LAST:event_radExcluidosActionPerformed
+
+    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
+       // TODO add your handling code here:
+         if(lztFuncionarios.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<Funcionario> selection = lztFuncionarios.getSelectedValuesList();
+            
+            for(Funcionario aux: selection){
+                
+                aux.setToTrash(true);
+          
+             repository.saveOrUpdate(aux);
+                 modelFuncio.removeElement(aux);
+            }
+       
+    }//GEN-LAST:event_bntExcluirActionPerformed
+
+    private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
+        // TODO add your handling code here:
+          if(lztFuncionarios.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<Funcionario> selection = lztFuncionarios.getSelectedValuesList();
+            
+            for(Funcionario aux: selection){
+                
+                aux.setToTrash(false);
+          
+             repository.saveOrUpdate(aux);
+                 modelFuncio.removeElement(aux);
+            }
+        
+          
+    }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
+
+    private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
+        // TODO add your handling code here:
+          if(lztFuncionarios.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<Funcionario> selection = lztFuncionarios.getSelectedValuesList();
+            
+            for(Funcionario aux: selection){
+                
+                aux.setToTrash(false);
+          
+             repository.delete(aux);
+                 modelFuncio.removeElement(aux);
+            }
+        
+        
+    
+    }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
+
+    private void bntEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEsvaziarLixeiraActionPerformed
+        // TODO add your handling code here:
+        
+            repository.EmptyTrash();
+           modelFuncio.clear();
+        
+        
+       
+    }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -265,6 +441,7 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton bntExcluirLixeira;
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton bntSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCargo;
@@ -274,7 +451,7 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSituacao;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lztFuncionarios;
+    private javax.swing.JList<Funcionario> lztFuncionarios;
     private javax.swing.JPanel pnlCadastroFuncionario;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidos;
@@ -286,4 +463,15 @@ public class CadastroNovoFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSituacao;
     // End of variables declaration//GEN-END:variables
+
+private void enableTrash(boolean status) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+        bntExcluir.setEnabled(!status);
+
+        bntExcluirLixeira.setEnabled(status);
+        bntRestaurarLixeira.setEnabled(status);
+        bntEsvaziarLixeira.setEnabled(status);
+    }
+
 }
