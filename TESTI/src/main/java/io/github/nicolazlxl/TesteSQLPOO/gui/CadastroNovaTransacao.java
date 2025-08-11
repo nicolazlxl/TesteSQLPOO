@@ -253,7 +253,8 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             public void run() {
                 new CadastroNovaTransacao().setVisible(true);
             }
-        });
+        })
+        */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
