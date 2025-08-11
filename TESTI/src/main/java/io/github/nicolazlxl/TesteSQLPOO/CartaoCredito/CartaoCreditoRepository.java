@@ -14,7 +14,7 @@ public class CartaoCreditoRepository
     extends Repository<CartaoCredito> {
      @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM CartaoCredito a";
+        return "SELECT a FROM CartaoCredito a WHERE a.ToTrash = false";
     }
 
     @Override

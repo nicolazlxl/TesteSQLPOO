@@ -15,7 +15,7 @@ public class ContratoRepository
     extends Repository<Contrato> {
      @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Contrato a";
+        return "SELECT a FROM Contrato a WHERE a.ToTrash = false";
     }
 
     @Override

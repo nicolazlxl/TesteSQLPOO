@@ -17,7 +17,7 @@ public class EmprestimoRepository
     extends Repository<Emprestimo> {
      @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Emprestimo a";
+        return "SELECT a FROM Emprestimo a WHERE a.ToTrash = false";
     }
 
     @Override

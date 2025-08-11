@@ -29,7 +29,7 @@ import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
 public class ClienteRepository extends Repository<Cliente> {
    @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Cliente a";
+        return "SELECT a FROM Cliente a WHERE a.ToTrash = false";
     }
 
     @Override

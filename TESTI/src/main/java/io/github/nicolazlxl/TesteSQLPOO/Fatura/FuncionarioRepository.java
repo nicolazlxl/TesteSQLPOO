@@ -16,7 +16,7 @@ public class FuncionarioRepository
     extends Repository<Fatura> {
      @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Fatura a";
+        return "SELECT a FROM Fatura a WHERE a.ToTrash = false";
     }
 
     @Override

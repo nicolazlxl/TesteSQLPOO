@@ -14,7 +14,7 @@ public class ContaRepository
     extends Repository<Conta> {
      @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Conta a";
+        return "SELECT a FROM Conta a WHERE a.ToTrash = false";
     }
 
     @Override

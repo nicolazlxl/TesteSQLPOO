@@ -20,7 +20,7 @@ public class TransacaoRepository extends Repository<Transacao>{
      */
     @Override
     public String getJpqlFindAll() {
-        return "SELECT a FROM Transacao a";
+        return "SELECT a FROM Transacao a WHERE a.ToTrash = false";
     }
 
     @Override
