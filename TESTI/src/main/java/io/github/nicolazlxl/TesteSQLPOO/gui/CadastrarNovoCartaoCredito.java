@@ -6,6 +6,11 @@ package io.github.nicolazlxl.TesteSQLPOO.gui;
 
 import io.github.nicolazlxl.TesteSQLPOO.CartaoCredito.CartaoCredito;
 import io.github.nicolazlxl.TesteSQLPOO.CartaoCredito.CartaoCreditoRepository;
+
+import java.util.List;
+
+
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +19,24 @@ import javax.swing.JOptionPane;
  */
 public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
 
+    
+        
+
+    private final DefaultListModel<CartaoCredito> modelCartao;
+    private final CartaoCreditoRepository repository;
+    
+    
+  
     /**
      * Creates new form CadastrarNovoCartãoCredito
      */
     public CadastrarNovoCartaoCredito() {
+          repository = new CartaoCreditoRepository();
+        
+        modelCartao = new DefaultListModel<>();
+        modelCartao.addAll(repository.findAll());
         initComponents();
+       
     }
 
     /**
@@ -45,8 +63,6 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         pnlListagem = new javax.swing.JPanel();
         lblListaCartoes = new javax.swing.JLabel();
-        srcCadastrosCartao = new javax.swing.JScrollPane();
-        lstCartaoCredito = new javax.swing.JList<>();
         radPresenteBanco = new javax.swing.JRadioButton();
         radExcluido = new javax.swing.JRadioButton();
         btnExcluir = new javax.swing.JButton();
@@ -55,6 +71,8 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
         btnExcluirLixeira = new javax.swing.JButton();
         btnEsvaziarLixeira = new javax.swing.JButton();
         lblAlerta = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Cartão de Credito");
@@ -107,7 +125,7 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
                     .addGroup(pnlCadastraCartaoLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(lblCadastraCartaoCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 50, Short.MAX_VALUE))
+                        .addGap(0, 101, Short.MAX_VALUE))
                     .addGroup(pnlCadastraCartaoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlCadastraCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -156,16 +174,31 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
 
         lblListaCartoes.setText("Lista de Cartões de Credito");
 
-        srcCadastrosCartao.setViewportView(lstCartaoCredito);
-
+        buttonGroup1.add(radPresenteBanco);
         radPresenteBanco.setText("Presente no Banco");
+        radPresenteBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radPresenteBancoActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(radExcluido);
         radExcluido.setText("Excluidos");
+        radExcluido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidoActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setBackground(new java.awt.Color(51, 0, 0));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         lblLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLixeira.setText("Lixeira");
@@ -173,17 +206,35 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
         btnRestaurarLixeira.setBackground(new java.awt.Color(51, 0, 0));
         btnRestaurarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnRestaurarLixeira.setText("Restaurar");
+        btnRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarLixeiraActionPerformed(evt);
+            }
+        });
 
         btnExcluirLixeira.setBackground(new java.awt.Color(51, 0, 0));
         btnExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcluirLixeira.setText("Excluir");
+        btnExcluirLixeira.setText("Apagar");
+        btnExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         btnEsvaziarLixeira.setBackground(new java.awt.Color(51, 0, 0));
         btnEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnEsvaziarLixeira.setText("Esvaziar");
+        btnEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsvaziarLixeiraActionPerformed(evt);
+            }
+        });
 
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione um Cartão de Credito");
+
+        jList1.setModel(modelCartao);
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout pnlListagemLayout = new javax.swing.GroupLayout(pnlListagem);
         pnlListagem.setLayout(pnlListagemLayout);
@@ -194,8 +245,9 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblListaCartoes, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(srcCadastrosCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radExcluido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(radPresenteBanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,11 +282,11 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRestaurarLixeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEsvaziarLixeira))
-                    .addComponent(srcCadastrosCartao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(btnExcluirLixeira))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEsvaziarLixeira)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(lblAlerta)
                 .addContainerGap())
         );
@@ -293,6 +345,95 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
         CRepository.saveOrUpdate(c1);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void radPresenteBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoActionPerformed
+        // TODO add your handling code here:
+           enableTrash(false);
+           modelCartao.clear();
+           modelCartao.addAll(repository.findAll());
+    }//GEN-LAST:event_radPresenteBancoActionPerformed
+
+    private void radExcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidoActionPerformed
+        // TODO add your handling code here:
+           enableTrash(true);
+          modelCartao.clear();
+          modelCartao.addAll(repository.findTrash());
+    }//GEN-LAST:event_radExcluidoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        
+           if(jList1.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<CartaoCredito> selection = jList1.getSelectedValuesList();
+            
+            for(CartaoCredito aux: selection){
+                
+                aux.setToTrash(true);
+          
+                    repository.saveOrUpdate(aux);
+                    modelCartao.removeElement(aux);
+            }
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarLixeiraActionPerformed
+        // TODO add your handling code here:
+        
+           if(jList1.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<CartaoCredito> selection = jList1.getSelectedValuesList();
+            
+            for(CartaoCredito aux: selection){
+                
+                aux.setToTrash(false);
+          
+                    repository.saveOrUpdate(aux);
+                    modelCartao.removeElement(aux);
+            }
+      
+        
+    }//GEN-LAST:event_btnRestaurarLixeiraActionPerformed
+
+    private void btnEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsvaziarLixeiraActionPerformed
+        // TODO add your handling code here:
+        
+         repository.EmptyTrash();
+          modelCartao.clear();
+    }//GEN-LAST:event_btnEsvaziarLixeiraActionPerformed
+
+    private void btnExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirLixeiraActionPerformed
+        // TODO add your handling code here:
+        
+           if(jList1.getSelectedIndices().length == 0){
+            //showWarning("Selecione ao menos uma agência");
+            return;
+        }
+      
+            List<CartaoCredito> selection = jList1.getSelectedValuesList();
+            
+            for(CartaoCredito aux: selection){
+                
+                aux.setToTrash(false);
+          
+                    repository.delete(aux);
+                    modelCartao.removeElement(aux);
+            }
+        
+        
+    }//GEN-LAST:event_btnExcluirLixeiraActionPerformed
+
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -336,6 +477,8 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
     private javax.swing.JButton btnRestaurarLixeira;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JList<CartaoCredito> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblCadastraCartaoCredito;
     private javax.swing.JLabel lblLimiteDisponivelCartao;
@@ -344,16 +487,23 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
     private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblNumeroCartao;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JList<String> lstCartaoCredito;
     private javax.swing.JPanel pnlCadastraCartao;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluido;
     private javax.swing.JRadioButton radPresenteBanco;
-    private javax.swing.JScrollPane srcCadastrosCartao;
     private javax.swing.JTabbedPane tabPrincipal;
     private javax.swing.JTextField txtLimiteDisponivelCartao;
     private javax.swing.JTextField txtLimiteTotalCartao;
     private javax.swing.JTextField txtNumeroCartaoCredito;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
+private void enableTrash(boolean status) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+        btnExcluir.setEnabled(!status);
+
+        btnEsvaziarLixeira.setEnabled(status);
+        btnExcluirLixeira.setEnabled(status);
+        btnRestaurarLixeira.setEnabled(status);
+    }
 }
