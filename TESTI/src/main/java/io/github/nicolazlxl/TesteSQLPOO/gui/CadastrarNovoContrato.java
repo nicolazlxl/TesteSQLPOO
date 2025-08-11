@@ -7,7 +7,10 @@ package io.github.nicolazlxl.TesteSQLPOO.gui;
 import io.github.nicolazlxl.TesteSQLPOO.Contrato.Contrato;
 import io.github.nicolazlxl.TesteSQLPOO.Contrato.ContratoRepository;
 import java.time.LocalDate;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,11 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class CadastrarNovoContrato extends javax.swing.JFrame {
 
+    private final ContratoRepository repository;
+    private final DefaultListModel<Contrato> modelContrato;
     /**
      * Creates new form CadastrarNovoContrato
      */
     public CadastrarNovoContrato() {
+        repository = new ContratoRepository();
+        
+        modelContrato = new DefaultListModel<>();
+        modelContrato.addAll(repository.findAll());
         initComponents();
+        
+        
+        lblAlerta.setVisible(false);
     }
 
     /**
@@ -31,6 +43,8 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastraContrato = new javax.swing.JPanel();
         lblCadastrarContrato = new javax.swing.JLabel();
@@ -75,6 +89,7 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 51));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,42 +145,87 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
                     .addComponent(txtDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalvar)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         tabPrincipal.addTab("Cadastrar Contrato", pnlCadastraContrato);
 
         lblListaContratos.setText("Lista de Contratos");
 
+        lstContratos.setModel(modelContrato);
         srcContrato.setViewportView(lstContratos);
 
+        buttonGroup1.add(radPresenteBanco);
         radPresenteBanco.setText("Presente no Banco");
+        radPresenteBanco.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radPresenteBancoItemStateChanged(evt);
+            }
+        });
         radPresenteBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radPresenteBancoActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluidos");
+        radExcluidos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radExcluidosItemStateChanged(evt);
+            }
+        });
+        radExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidosActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setBackground(new java.awt.Color(0, 0, 51));
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         lblLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLixeira.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLixeira.setText("Lixeira");
 
         btnRestaurar.setBackground(new java.awt.Color(0, 0, 51));
+        btnRestaurar.setForeground(new java.awt.Color(255, 255, 255));
         btnRestaurar.setText("Restaurar");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
 
         btnExcluirLixeira.setBackground(new java.awt.Color(0, 0, 51));
+        btnExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirLixeira.setText("Excluir");
+        btnExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         btnEsvaziar.setBackground(new java.awt.Color(0, 0, 51));
+        btnEsvaziar.setForeground(new java.awt.Color(255, 255, 255));
         btnEsvaziar.setText("Esvaziar");
+        btnEsvaziar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsvaziarActionPerformed(evt);
+            }
+        });
 
+        lblAlerta.setBackground(new java.awt.Color(153, 153, 255));
+        lblAlerta.setForeground(new java.awt.Color(0, 0, 0));
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione um Contrato");
+        lblAlerta.setOpaque(true);
 
         javax.swing.GroupLayout pnlListagemLayout = new javax.swing.GroupLayout(pnlListagem);
         pnlListagem.setLayout(pnlListagemLayout);
@@ -217,8 +277,9 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(btnExcluirLixeira))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEsvaziar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btnEsvaziar)
+                .addContainerGap())
         );
 
         tabPrincipal.addTab("Listagem", pnlListagem);
@@ -265,8 +326,98 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radPresenteBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoActionPerformed
-        // TODO add your handling code here:
+        enableTrash(false);
+            
+            modelContrato.clear();
+            modelContrato.addAll(repository.findAll());
     }//GEN-LAST:event_radPresenteBancoActionPerformed
+
+    private void radPresenteBancoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresenteBancoItemStateChanged
+        
+    }//GEN-LAST:event_radPresenteBancoItemStateChanged
+
+    private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
+        enableTrash(true);
+           
+            modelContrato.clear();
+            modelContrato.addAll(repository.findTrash());
+    }//GEN-LAST:event_radExcluidosActionPerformed
+
+    private void radExcluidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radExcluidosItemStateChanged
+        
+    }//GEN-LAST:event_radExcluidosItemStateChanged
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if(lstContratos.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Contrato");
+            return;
+        }
+        if(lstContratos.getSelectedIndices().length == 1){
+             List<Contrato> selection = lstContratos.getSelectedValuesList();
+             Contrato selecionada = selection.getFirst();
+             selecionada.setToTrash(true);
+             repository.saveOrUpdate(selecionada);
+            modelContrato.removeElement(selecionada);
+        }else{
+            List<Contrato> selection = lstContratos.getSelectedValuesList();
+            for(Contrato aux: selection){
+                aux.setToTrash(true);
+             repository.saveOrUpdate(aux);
+                modelContrato.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        if(lstContratos.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Emprestimo");
+            return;
+        }
+        if(lstContratos.getSelectedIndices().length == 1){
+             List<Contrato> selection = lstContratos.getSelectedValuesList();
+             Contrato selecionada = selection.getFirst();
+             selecionada.setToTrash(false);
+             repository.saveOrUpdate(selecionada);
+            modelContrato.removeElement(selecionada);
+
+        }else{
+            List<Contrato> selection = lstContratos.getSelectedValuesList();
+            
+            for(Contrato  aux: selection){
+                aux.setToTrash(false);
+             repository.saveOrUpdate(aux);
+                modelContrato.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnRestaurarActionPerformed
+
+    private void btnEsvaziarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsvaziarActionPerformed
+        repository.EmptyTrash();
+         modelContrato.clear();
+         showWarning("Lixeira esvaziada");
+    }//GEN-LAST:event_btnEsvaziarActionPerformed
+
+    private void btnExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirLixeiraActionPerformed
+        if(lstContratos.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Emprestimo");
+            return;
+        }
+        if(lstContratos.getSelectedIndices().length == 1){
+             List<Contrato> selection = lstContratos.getSelectedValuesList();
+             Contrato selecionada = selection.getFirst();
+             repository.delete(selecionada);
+            modelContrato.removeElement(selecionada);
+             showWarning("Emprestimo deletada");
+            
+        }else{
+            List<Contrato> selection = lstContratos.getSelectedValuesList();
+            for(Contrato aux: selection){
+              showWarning("Emprestimo deletadas");
+                repository.delete(aux);
+                modelContrato.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirLixeiraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +460,8 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirLixeira;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblCadastrarContrato;
     private javax.swing.JLabel lblDataCadastro;
@@ -316,7 +469,7 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblValorTotal;
-    private javax.swing.JList<String> lstContratos;
+    private javax.swing.JList<Contrato> lstContratos;
     private javax.swing.JPanel pnlCadastraContrato;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidos;
@@ -327,4 +480,26 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtValorTotal;
     // End of variables declaration//GEN-END:variables
+
+    private void enableTrash(boolean status) {
+        btnExcluir.setEnabled(!status);
+          
+          btnExcluirLixeira.setEnabled(status);
+          btnEsvaziar.setEnabled(status);
+          btnRestaurar.setEnabled(status);
+    }
+
+
+    private void showWarning(String warning) {
+        lblAlerta.setText(warning);
+          lblAlerta.setVisible(true);
+          
+          Timer timer = new Timer(4000, (e) -> {
+              lblAlerta.setVisible(false);
+              ((Timer) e.getSource()).stop();
+          });
+          
+          timer.setRepeats(false);
+          timer.start();
+    }
 }
