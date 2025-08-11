@@ -89,6 +89,7 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
 
         btnSalvar.setBackground(new java.awt.Color(102, 0, 0));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.setActionCommand("");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,18 +164,22 @@ public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
 
         btnExcluir.setBackground(new java.awt.Color(51, 0, 0));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
 
         lblLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLixeira.setText("Lixeira");
 
         btnRestaurarLixeira.setBackground(new java.awt.Color(51, 0, 0));
+        btnRestaurarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnRestaurarLixeira.setText("Restaurar");
 
         btnExcluirLixeira.setBackground(new java.awt.Color(51, 0, 0));
+        btnExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirLixeira.setText("Excluir");
 
         btnEsvaziarLixeira.setBackground(new java.awt.Color(51, 0, 0));
+        btnEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnEsvaziarLixeira.setText("Esvaziar");
 
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -4,6 +4,10 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Emprestimo.Emprestimo;
+import io.github.nicolazlxl.TesteSQLPOO.Emprestimo.EmprestimoRepository;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
@@ -72,6 +76,11 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
         btnSalvar.setBackground(new java.awt.Color(51, 0, 51));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCadastroEmprestimoLayout = new javax.swing.GroupLayout(pnlCadastroEmprestimo);
         pnlCadastroEmprestimo.setLayout(pnlCadastroEmprestimoLayout);
@@ -232,6 +241,34 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+                
+        Emprestimo e1 = new Emprestimo();
+        EmprestimoRepository e1Repository = new EmprestimoRepository();
+        
+        double valorTotal = Double.parseDouble(txtValorEmprestimo.getText());
+        double taxaJuros = Double.parseDouble(txtTaxaJuros.getText());
+        int numeroParcelas = Integer.parseInt(txtNumeroParcelas.getText());
+        String status = txtStatus.getText();
+        
+        e1.setValorTotal(valorTotal);
+        e1.setNumeroParcelas(numeroParcelas);
+        e1.setTaxaJuros(taxaJuros);
+        e1.setStatus(status);
+        
+        
+        JOptionPane.showMessageDialog(null, "Emprestimo Criado:" + 
+                                             "\n" + "\n"
+                                             + valorTotal + "\n"
+                                             + taxaJuros + "\n"
+                                             + numeroParcelas + "\n"
+                                             + status + "\n");
+        
+        e1Repository.saveOrUpdate(e1);
+//       
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

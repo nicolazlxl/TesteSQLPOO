@@ -4,6 +4,11 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Contrato.Contrato;
+import io.github.nicolazlxl.TesteSQLPOO.Contrato.ContratoRepository;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
@@ -239,7 +244,24 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+           double valorTotal = Double.parseDouble(txtValorTotal.getText());
+           String status = txtStatus.getText();
+           LocalDate dataContrato = LocalDate.parse(txtDataCadastro.getText());
+           
+           Contrato ct1 = new Contrato();
+           ContratoRepository ct1Repository = new ContratoRepository();
+           
+           ct1.setDataContrato(dataContrato);
+           ct1.setStatus(status);
+           ct1.setValorTotal(valorTotal);
+
+        JOptionPane.showMessageDialog(null, "Contrato Criado:" + 
+                                             "\n" + "\n"
+                                            + valorTotal + "\n"
+                                             + dataContrato + "\n"
+                                             + status + "\n");
+        
+        ct1Repository.saveOrUpdate(ct1);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radPresenteBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoActionPerformed
