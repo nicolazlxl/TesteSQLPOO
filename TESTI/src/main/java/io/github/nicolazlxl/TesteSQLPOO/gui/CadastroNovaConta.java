@@ -8,18 +8,31 @@ import io.github.nicolazlxl.TesteSQLPOO.Conta.Conta;
 import io.github.nicolazlxl.TesteSQLPOO.Conta.ContaRepository;
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author taina
  */
 public class CadastroNovaConta extends javax.swing.JFrame {
+    
+    private final DefaultListModel<Conta> modelConta;
+    private final ContaRepository repository;
 
     /**
      * Creates new form CadastroNovaConta
      */
     public CadastroNovaConta() {
+        
+        repository = new ContaRepository();
+        
+        modelConta = new DefaultListModel<>();
+        modelConta.addAll(repository.findAll());
         initComponents();
+        
+        lblAlerta.setVisible(false);
+        
     }
 
     /**
@@ -161,12 +174,18 @@ public class CadastroNovaConta extends javax.swing.JFrame {
 
         lblContas.setText("Contas:");
 
+        lstContas.setModel(modelConta);
         scrContas.setViewportView(lstContas);
 
         radNaoExcluidos.setText("Não excluídos");
         radNaoExcluidos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 radNaoExcluidosItemStateChanged(evt);
+            }
+        });
+        radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radNaoExcluidosActionPerformed(evt);
             }
         });
 
@@ -187,10 +206,25 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         lblLixeira.setText("Lixeira:");
 
         bntRestaurarLixeira.setText("Restaurar");
+        bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRestaurarLixeiraActionPerformed(evt);
+            }
+        });
 
         bntExcluirLixeira.setText("Excluir");
+        bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         bntEsvaziarLixeira.setText("Esvaziar");
+        bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntEsvaziarLixeiraActionPerformed(evt);
+            }
+        });
 
         lblAlerta.setBackground(new java.awt.Color(255, 153, 153));
         lblAlerta.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,15 +343,32 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         c1.setLimiteDiariSaque (limiteDiariSaque);
         
         new ContaRepository().saveOrUpdate(c1);
+        //repository.saveOrUpdate(c1);
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
         // TODO add your handling code here:
-        //if (evt.getStateChange() = )
+        enableTrash(true);
+        modelConta.clear();
+        modelConta.addAll(repository.findTrash());
     }//GEN-LAST:event_radExcluidosActionPerformed
 
     private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
         // TODO add your handling code here:
+        if(lstContas.getSelectedIndices().length == 0){
+            return;
+        }
+      
+            List<Conta> selection = lstContas.getSelectedValuesList();
+            
+            for(Conta aux: selection){
+                
+                aux.setToTrash(true);
+          
+            repository.saveOrUpdate(aux);
+            modelConta.removeElement(aux);
+            }
     }//GEN-LAST:event_bntExcluirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -327,6 +378,50 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private void radNaoExcluidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radNaoExcluidosItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_radNaoExcluidosItemStateChanged
+
+    private void radNaoExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNaoExcluidosActionPerformed
+        // TODO add your handling code here:
+        enableTrash(false);
+        modelConta.clear();
+        modelConta.addAll(repository.findAll());
+    }//GEN-LAST:event_radNaoExcluidosActionPerformed
+
+    private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
+        // TODO add your handling code here:
+        if(lstContas.getSelectedIndices().length == 0){
+            return;
+        }
+     
+            List<Conta> selection = lstContas.getSelectedValuesList();
+            
+            for(Conta aux: selection){
+                
+                aux.setToTrash(false);
+          
+                repository.saveOrUpdate(aux);
+                modelConta.removeElement(aux);
+            }
+    }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
+
+    private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
+        // TODO add your handling code here:
+         if(lstContas.getSelectedIndices().length == 0){
+            return;
+        }
+     
+            List<Conta> selection = lstContas.getSelectedValuesList();
+            
+            for(Conta aux: selection){
+                repository.delete(aux);
+                modelConta.removeElement(aux);
+            }
+    }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
+
+    private void bntEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEsvaziarLixeiraActionPerformed
+        // TODO add your handling code here:
+        repository.EmptyTrash();
+        modelConta.clear();
+    }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,7 +475,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lstContas;
+    private javax.swing.JList<Conta> lstContas;
     private javax.swing.JPanel pnlCadastroConta;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidos;
@@ -393,4 +488,14 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
+
+    private void enableTrash(boolean status) {
+    
+        bntExcluir.setEnabled(!status);
+
+        bntExcluirLixeira.setEnabled(status);
+        bntRestaurarLixeira.setEnabled(status);
+        bntEsvaziarLixeira.setEnabled(status);
+    }
+
 }
