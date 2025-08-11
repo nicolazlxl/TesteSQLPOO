@@ -6,19 +6,30 @@ package io.github.nicolazlxl.TesteSQLPOO.gui;
 
 import io.github.nicolazlxl.TesteSQLPOO.Emprestimo.Emprestimo;
 import io.github.nicolazlxl.TesteSQLPOO.Emprestimo.EmprestimoRepository;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import java.awt.Font;
 
 /**
  *
  * @author Dell
  */
 public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
-
+    private final EmprestimoRepository repository;
+    private final DefaultListModel<Emprestimo> modelEmprestimo;
     /**
      * Creates new form CadastrarNovoEmprestimo
      */
     public CadastrarNovoEmprestimo() {
+        repository = new EmprestimoRepository();
+        
+        modelEmprestimo = new DefaultListModel<>();
+        modelEmprestimo.addAll(repository.findAll());
         initComponents();
+
+        lblAlerta.setVisible(false);
     }
 
     /**
@@ -140,30 +151,78 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
 
         lblListagemEmprestimo.setText("Listagem de Emprestimos:");
 
+        lstEmprestimo.setModel(modelEmprestimo);
         scrEmprestimo.setViewportView(lstEmprestimo);
 
         radPresenteBancoEmprestimo.setText("Presente no Banco");
+        radPresenteBancoEmprestimo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radPresenteBancoEmprestimoItemStateChanged(evt);
+            }
+        });
+        radPresenteBancoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radPresenteBancoEmprestimoActionPerformed(evt);
+            }
+        });
 
         radExcluidoEmprestimo.setText("Excluidos");
+        radExcluidoEmprestimo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radExcluidoEmprestimoItemStateChanged(evt);
+            }
+        });
+        radExcluidoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidoEmprestimoActionPerformed(evt);
+            }
+        });
 
         btnExcluirEmprestimo.setBackground(new java.awt.Color(51, 0, 51));
         btnExcluirEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluirEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirEmprestimo.setText("Excluir");
+        btnExcluirEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirEmprestimoActionPerformed(evt);
+            }
+        });
 
         lblLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLixeira.setText("Lixeira:");
 
         btnRestaurar.setBackground(new java.awt.Color(51, 0, 51));
+        btnRestaurar.setForeground(new java.awt.Color(255, 255, 255));
         btnRestaurar.setText("Restaurar");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
 
         btnExcluirLixeira.setBackground(new java.awt.Color(51, 0, 51));
+        btnExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirLixeira.setText("Excluir");
+        btnExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         btnEsvaziarLixeira.setBackground(new java.awt.Color(51, 0, 51));
+        btnEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         btnEsvaziarLixeira.setText("Esvaziar");
+        btnEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsvaziarLixeiraActionPerformed(evt);
+            }
+        });
 
+        lblAlerta.setBackground(new java.awt.Color(255, 102, 204));
+        lblAlerta.setForeground(new java.awt.Color(0, 0, 0));
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione um Emprestimo");
+        lblAlerta.setOpaque(true);
 
         javax.swing.GroupLayout pnlListagemLayout = new javax.swing.GroupLayout(pnlListagem);
         pnlListagem.setLayout(pnlListagemLayout);
@@ -243,8 +302,6 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
-                
         Emprestimo e1 = new Emprestimo();
         EmprestimoRepository e1Repository = new EmprestimoRepository();
         
@@ -267,9 +324,124 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
                                              + status + "\n");
         
         e1Repository.saveOrUpdate(e1);
-//       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void radPresenteBancoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoEmprestimoActionPerformed
+        enableTrash(false);
+            
+            modelEmprestimo.clear();
+            modelEmprestimo.addAll(repository.findAll());
+    }//GEN-LAST:event_radPresenteBancoEmprestimoActionPerformed
+
+    private void radPresenteBancoEmprestimoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radPresenteBancoEmprestimoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radPresenteBancoEmprestimoItemStateChanged
+
+    private void radExcluidoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidoEmprestimoActionPerformed
+        enableTrash(true);
+           
+            modelEmprestimo.clear();
+            modelEmprestimo.addAll(repository.findTrash());
+    }//GEN-LAST:event_radExcluidoEmprestimoActionPerformed
+
+    private void radExcluidoEmprestimoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radExcluidoEmprestimoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radExcluidoEmprestimoItemStateChanged
+
+    private void btnExcluirEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirEmprestimoActionPerformed
+        if(lstEmprestimo.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Contrato");
+            return;
+        }
+        if(lstEmprestimo.getSelectedIndices().length == 1){
+            
+            
+             List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+             
+             Emprestimo selecionada = selection.getFirst();
+             
+             selecionada.setToTrash(true);
+          
+             repository.saveOrUpdate(selecionada);
+            
+            modelEmprestimo.removeElement(selecionada);
+            
+            
+        }else{
+            List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+            
+            for(Emprestimo aux: selection){
+                
+                aux.setToTrash(true);
+          
+             repository.saveOrUpdate(aux);
+                modelEmprestimo.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirEmprestimoActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        if(lstEmprestimo.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Emprestimo");
+            return;
+        }
+        if(lstEmprestimo.getSelectedIndices().length == 1){
+             List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+             Emprestimo selecionada = selection.getFirst();
+             selecionada.setToTrash(false);
+             repository.saveOrUpdate(selecionada);
+            modelEmprestimo.removeElement(selecionada);
+            
+            
+        }else{
+            List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+            
+            for(Emprestimo  aux: selection){
+                aux.setToTrash(false);
+             repository.saveOrUpdate(aux);
+                modelEmprestimo.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnRestaurarActionPerformed
+
+    private void btnEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsvaziarLixeiraActionPerformed
+        repository.EmptyTrash();
+         modelEmprestimo.clear();
+         showWarning("Lixeira esvaziada");
+    }//GEN-LAST:event_btnEsvaziarLixeiraActionPerformed
+
+    private void btnExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirLixeiraActionPerformed
+        if(lstEmprestimo.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos um Emprestimo");
+            return;
+        }
+        if(lstEmprestimo.getSelectedIndices().length == 1){
+            
+            
+             List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+             
+             Emprestimo selecionada = selection.getFirst();
+             
+             repository.delete(selecionada);
+            
+            modelEmprestimo.removeElement(selecionada);
+             showWarning("Emprestimo deletada");
+            
+        }else{
+            List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
+            
+            for(Emprestimo aux: selection){
+                
+              showWarning("Emprestimo deletadas");
+          
+                repository.delete(aux);
+                modelEmprestimo.removeElement(aux);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirLixeiraActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -319,7 +491,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     private javax.swing.JLabel lblTaxaJuros;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblValorTotalEmprestimo;
-    private javax.swing.JList<String> lstEmprestimo;
+    private javax.swing.JList<Emprestimo> lstEmprestimo;
     private javax.swing.JPanel pnlCadastroEmprestimo;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidoEmprestimo;
@@ -331,4 +503,27 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     private javax.swing.JTextField txtTaxaJuros;
     private javax.swing.JTextField txtValorEmprestimo;
     // End of variables declaration//GEN-END:variables
+
+    private void enableTrash(boolean status) {
+          btnExcluirEmprestimo.setEnabled(!status);
+          
+          btnExcluirLixeira.setEnabled(status);
+          btnEsvaziarLixeira.setEnabled(status);
+          btnRestaurar.setEnabled(status);
+    }
+
+    private void showWarning(String warning) {
+        lblAlerta.setText(warning);
+          lblAlerta.setVisible(true);
+          
+          Timer timer = new Timer(4000, (e) -> {
+              lblAlerta.setVisible(false);
+              ((Timer) e.getSource()).stop();
+          });
+          
+          timer.setRepeats(false);
+          timer.start();
+    }
+    
+    
 }
