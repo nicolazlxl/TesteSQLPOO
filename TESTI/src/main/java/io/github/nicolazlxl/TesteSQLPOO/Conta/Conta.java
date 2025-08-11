@@ -26,7 +26,7 @@ public class Conta
     private static final long serialVersionUID = 1L;
     
     @Column(nullable = false)
-    private double numero;
+    private String numero;
 
     @Column(nullable = false)
     private double saldo;
@@ -46,11 +46,11 @@ public class Conta
         return serialVersionUID;
     }
 
-    public double getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(double numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
