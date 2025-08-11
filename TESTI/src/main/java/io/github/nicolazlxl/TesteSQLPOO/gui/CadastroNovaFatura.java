@@ -42,6 +42,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroFatura = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -137,6 +138,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         lstFaturas.setModel(modelFatura);
         scrFaturas.setViewportView(lstFaturas);
 
+        buttonGroup1.add(radNaoExcluidos);
         radNaoExcluidos.setText("Não Excluídos");
         radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +146,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluídos");
         radExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,6 +402,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private javax.swing.JButton bntExcluirLixeira;
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton bntSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblDataFechamentoFatura;
     private javax.swing.JLabel lblFaturas;

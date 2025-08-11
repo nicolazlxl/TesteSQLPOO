@@ -15,6 +15,8 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -315,6 +317,9 @@
             </Container>
             <Component class="javax.swing.JRadioButton" name="radNaoExcluidos">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="N&#xe3;o exclu&#xed;dos"/>
               </Properties>
               <Events>
@@ -324,6 +329,9 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radExcluidos">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exclu&#xed;dos"/>
               </Properties>
               <Events>

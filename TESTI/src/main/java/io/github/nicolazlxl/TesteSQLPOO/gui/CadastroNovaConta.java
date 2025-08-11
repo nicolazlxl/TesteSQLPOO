@@ -46,6 +46,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
 
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jButton2 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroConta = new javax.swing.JPanel();
         lblNumero = new javax.swing.JLabel();
@@ -177,6 +178,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         lstContas.setModel(modelConta);
         scrContas.setViewportView(lstContas);
 
+        buttonGroup1.add(radNaoExcluidos);
         radNaoExcluidos.setText("Não excluídos");
         radNaoExcluidos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -189,6 +191,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluídos");
         radExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -464,6 +467,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private javax.swing.JButton bntExcluirLixeira;
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel lblAlerta;
