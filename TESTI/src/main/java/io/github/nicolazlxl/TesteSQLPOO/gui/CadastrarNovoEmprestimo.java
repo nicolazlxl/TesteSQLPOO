@@ -41,6 +41,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroEmprestimo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -154,6 +155,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
         lstEmprestimo.setModel(modelEmprestimo);
         scrEmprestimo.setViewportView(lstEmprestimo);
 
+        buttonGroup1.add(radPresenteBancoEmprestimo);
         radPresenteBancoEmprestimo.setText("Presente no Banco");
         radPresenteBancoEmprestimo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -166,6 +168,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(radExcluidoEmprestimo);
         radExcluidoEmprestimo.setText("Excluidos");
         radExcluidoEmprestimo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -483,6 +486,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirLixeira;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblListagemEmprestimo;
     private javax.swing.JLabel lblLixeira;
