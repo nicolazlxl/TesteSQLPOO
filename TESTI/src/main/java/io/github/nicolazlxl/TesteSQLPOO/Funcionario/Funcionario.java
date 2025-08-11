@@ -31,7 +31,7 @@ public class Funcionario
     private String nome;
     
     @Column(nullable = false, length = 20)
-    private String id;
+    private String identificacao;
     
     @Column(nullable = false, length = 20)
     private String cargo;
@@ -50,12 +50,12 @@ public class Funcionario
         this.nome = nome;
     }
 
-    public String getMatricula() {
-        return id;
+    public String getIdentificacao() {
+        return identificacao;
     }
 
-    public void setMatricula(String matricula) {
-        this.id = id;
+    public void setIdent(String id) {
+        this.identificacao = id;
     }
 
     public String getCargo() {
@@ -81,7 +81,7 @@ public class Funcionario
 
     @Override
     public String toString() {
-        return "Funcionario{" + "nome=" + nome + ", id=" + id + ", cargo=" + cargo + ", ativo=" + ativo + '}';
+        return "Funcionario{" + "nome=" + nome + ", id=" + identificacao + ", cargo=" + cargo + ", ativo=" + ativo + '}';
     }
     //</editor-fold>
 
