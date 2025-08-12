@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dell
+ * @author Sarah Emanuelle e Nicolas
  */
 public class CadastrarNovoCartaoCredito extends javax.swing.JFrame {
 
@@ -507,3 +507,4 @@ private void enableTrash(boolean status) {
         btnRestaurarLixeira.setEnabled(status);
     }
 }
+
