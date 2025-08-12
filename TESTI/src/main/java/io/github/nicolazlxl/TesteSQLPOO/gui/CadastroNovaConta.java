@@ -55,13 +55,13 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         lblStatus = new javax.swing.JLabel();
         lblDataCriacao = new javax.swing.JLabel();
         lblLimiteDiarioSaque = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
         txtSaldo = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
         txtDataCriacao = new javax.swing.JTextField();
         txtLimiteDiarioSaque = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
         pnlListagem = new javax.swing.JPanel();
         lblContas = new javax.swing.JLabel();
         scrContas = new javax.swing.JScrollPane();
@@ -109,6 +109,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        lblTitulo.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Seja Bem-Vindo!");
 
@@ -119,26 +120,27 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             .addGroup(pnlCadastroContaLayout.createSequentialGroup()
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCadastroContaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSalvar)
                             .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblDataCriacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblLimiteDiarioSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblSaldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblDataCriacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblLimiteDiarioSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblSaldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNumero)
                                     .addComponent(txtSaldo)
                                     .addComponent(txtStatus)
                                     .addComponent(txtDataCriacao)
-                                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))))))
+                                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                    .addComponent(txtNumero)))))
+                    .addGroup(pnlCadastroContaLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         pnlCadastroContaLayout.setVerticalGroup(
@@ -147,28 +149,30 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNumero)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                        .addComponent(lblNumero)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNumero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSaldo)
-                    .addComponent(txtSaldo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(lblSaldo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 10, Short.MAX_VALUE))
+                    .addGroup(pnlCadastroContaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblStatus)
-                    .addComponent(txtStatus))
+                    .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDataCriacao)
-                    .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLimiteDiarioSaque)
-                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 22, Short.MAX_VALUE)
                 .addComponent(btnSalvar))
         );
 
@@ -323,9 +327,25 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
         String numero = txtNumero.getText();
+        
+        if (numero.length() != 5) {
+            JOptionPane.showMessageDialog(this, "O número da conta deve ter 5 caracteres.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+        
         double saldo = Double.parseDouble (txtSaldo.getText());
+        
         String status = txtStatus.getText();
-        LocalDate dataCriacao = LocalDate.parse(txtDataCriacao.getText());
+        
+        LocalDate dataCriacao;
+        
+        try {
+            dataCriacao = LocalDate.parse(txtDataCriacao.getText());
+        } catch (java.time.format.DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Data inválida! Use o formato AAAA-MM-DD.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         double limiteDiariSaque = Double.parseDouble (txtLimiteDiarioSaque.getText());
         
         JOptionPane.showMessageDialog(this, "Conta Cadastrada com Sucesso!" + "\n"
@@ -344,6 +364,14 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         c1.setLimiteDiariSaque (limiteDiariSaque);
         
         repository.saveOrUpdate(c1);
+
+        txtNumero.setText("");
+        txtSaldo.setText("");
+        txtStatus.setText("");
+        txtDataCriacao.setText("");
+        txtLimiteDiarioSaque.setText("");
+
+        JOptionPane.showMessageDialog(this, "Conta Cadastrada com Sucesso!");
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -509,19 +537,19 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         bntRestaurarLixeira.setEnabled(status);
         bntEsvaziarLixeira.setEnabled(status);
     }
-
     
-        private void showWarning(String warning) {
+    private void showWarning(String warning) {
             
-          lblAlerta.setText(warning);
-          lblAlerta.setVisible(true);
+        lblAlerta.setText(warning);
+        lblAlerta.setVisible(true);
           
-          Timer timer = new Timer(4000, (e) -> {
-              lblAlerta.setVisible(false);
-              ((Timer) e.getSource()).stop();
-          });
+        Timer timer = new Timer(4000, (e) -> {
+            lblAlerta.setVisible(false);
+            ((Timer) e.getSource()).stop();
+        });
           
-          timer.setRepeats(false);
-          timer.start();
+        timer.setRepeats(false);
+        timer.start();
     }
+    
 }

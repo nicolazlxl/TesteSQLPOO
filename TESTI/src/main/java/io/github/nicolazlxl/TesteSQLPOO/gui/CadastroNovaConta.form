@@ -77,32 +77,34 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                              <Component id="lblTitulo" min="-2" pref="250" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="lblStatus" max="32767" attributes="0"/>
-                                          <Component id="lblDataCriacao" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblLimiteDiarioSaque" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblSaldo" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblNumero" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="lblStatus" max="32767" attributes="0"/>
+                                              <Component id="lblDataCriacao" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblLimiteDiarioSaque" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblSaldo" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblNumero" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtNumero" max="32767" attributes="0"/>
                                           <Component id="txtSaldo" max="32767" attributes="0"/>
                                           <Component id="txtStatus" max="32767" attributes="0"/>
                                           <Component id="txtDataCriacao" max="32767" attributes="0"/>
                                           <Component id="txtLimiteDiarioSaque" pref="209" max="32767" attributes="0"/>
+                                          <Component id="txtNumero" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="lblTitulo" min="-2" pref="250" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -115,34 +117,37 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="lblTitulo" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNumero" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="32767" attributes="0"/>
+                              <Component id="lblSaldo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="10" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtNumero" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtSaldo" min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace pref="11" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblSaldo" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSaldo" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtStatus" max="32767" attributes="0"/>
+                          <Component id="txtStatus" pref="27" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblDataCriacao" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDataCriacao" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDataCriacao" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblLimiteDiarioSaque" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLimiteDiarioSaque" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblLimiteDiarioSaque" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLimiteDiarioSaque" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" pref="22" max="32767" attributes="0"/>
                       <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -179,8 +184,6 @@
                 <Property name="text" type="java.lang.String" value="Limite Di&#xe1;rio de Saque:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNumero">
-            </Component>
             <Component class="javax.swing.JTextField" name="txtSaldo">
             </Component>
             <Component class="javax.swing.JTextField" name="txtStatus">
@@ -199,9 +202,14 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblTitulo">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="14" style="3"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Seja Bem-Vindo!"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumero">
             </Component>
           </SubComponents>
         </Container>
