@@ -14,7 +14,7 @@ import java.awt.Font;
 
 /**
  *
- * @author Dell
+ * @author Sarah Emanuelle 
  */
 public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     private final EmprestimoRepository repository;
@@ -559,3 +559,4 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     
     
 }
+
