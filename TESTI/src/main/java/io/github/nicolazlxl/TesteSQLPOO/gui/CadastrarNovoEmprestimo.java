@@ -87,6 +87,7 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
 
         btnSalvar.setBackground(new java.awt.Color(51, 0, 51));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,28 +306,74 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        double valorTotal;
+        double taxaJuros;
+        int numeroParcelas;
+
+        try {
+            valorTotal = Double.parseDouble(txtValorEmprestimo.getText());
+            taxaJuros = Double.parseDouble(txtTaxaJuros.getText());
+            numeroParcelas = Integer.parseInt(txtNumeroParcelas.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Por favor, insira valores numéricos válidos para valor, juros e parcelas.",
+                    "Erro de Formato",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (valorTotal <= 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "O valor do empréstimo deve ser maior que zero.",
+                    "Valor Inválido",
+                    JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        if (numeroParcelas <= 0 || numeroParcelas > 420) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "O número de parcelas deve ser entre 1 e 420.",
+                    "Parcelas Inválidas",
+                    JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        if (taxaJuros < 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "A taxa de juros não pode ser negativa.",
+                    "Taxa Inválida",
+                    JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        String status = txtStatus.getText();
+
         Emprestimo e1 = new Emprestimo();
         EmprestimoRepository e1Repository = new EmprestimoRepository();
-        
-        double valorTotal = Double.parseDouble(txtValorEmprestimo.getText());
-        double taxaJuros = Double.parseDouble(txtTaxaJuros.getText());
-        int numeroParcelas = Integer.parseInt(txtNumeroParcelas.getText());
-        String status = txtStatus.getText();
-        
+
         e1.setValorTotal(valorTotal);
         e1.setNumeroParcelas(numeroParcelas);
         e1.setTaxaJuros(taxaJuros);
         e1.setStatus(status);
-        
-        
-        JOptionPane.showMessageDialog(null, "Emprestimo Criado:" + 
-                                             "\n" + "\n"
-                                             + valorTotal + "\n"
-                                             + taxaJuros + "\n"
-                                             + numeroParcelas + "\n"
-                                             + status + "\n");
-        
+
         e1Repository.saveOrUpdate(e1);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Empréstimo salvo com sucesso!",
+                "Sucesso",
+                JOptionPane.INFORMATION_MESSAGE);
+
+
+        txtValorEmprestimo.setText("");
+        txtTaxaJuros.setText("");
+        txtNumeroParcelas.setText("");
+        txtStatus.setText("");
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radPresenteBancoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoEmprestimoActionPerformed
@@ -357,26 +404,15 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
             return;
         }
         if(lstEmprestimo.getSelectedIndices().length == 1){
-            
-            
              List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
-             
              Emprestimo selecionada = selection.getFirst();
-             
              selecionada.setToTrash(true);
-          
              repository.saveOrUpdate(selecionada);
-            
             modelEmprestimo.removeElement(selecionada);
-            
-            
         }else{
             List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
-            
-            for(Emprestimo aux: selection){
-                
+            for(Emprestimo aux: selection){ 
                 aux.setToTrash(true);
-          
              repository.saveOrUpdate(aux);
                 modelEmprestimo.removeElement(aux);
             }
@@ -419,24 +455,16 @@ public class CadastrarNovoEmprestimo extends javax.swing.JFrame {
             return;
         }
         if(lstEmprestimo.getSelectedIndices().length == 1){
-            
-            
              List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
-             
              Emprestimo selecionada = selection.getFirst();
-             
              repository.delete(selecionada);
-            
             modelEmprestimo.removeElement(selecionada);
              showWarning("Emprestimo deletada");
             
         }else{
             List<Emprestimo> selection = lstEmprestimo.getSelectedValuesList();
-            
             for(Emprestimo aux: selection){
-                
               showWarning("Emprestimo deletadas");
-          
                 repository.delete(aux);
                 modelEmprestimo.removeElement(aux);
             }
