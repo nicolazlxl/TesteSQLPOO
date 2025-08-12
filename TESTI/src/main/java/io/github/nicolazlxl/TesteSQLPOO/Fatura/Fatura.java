@@ -9,12 +9,8 @@ package io.github.nicolazlxl.TesteSQLPOO.Fatura;
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.ProjectEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.PostLoad;
-import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 /**
  *
@@ -38,7 +34,6 @@ public class Fatura
     private String status;
 
   
-
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
     
       public LocalDate getDataFechamento() {
@@ -67,7 +62,6 @@ public class Fatura
 
     //</editor-fold>
     
-    
     //<editor-fold defaultstate="collapsed" desc="ToString">
   
     
@@ -78,8 +72,5 @@ public class Fatura
     
     
     //</editor-fold>
-
-   
-
-              
+             
 }
