@@ -4,17 +4,33 @@
  */
 package io.github.nicolazlxl.TesteSQLPOO.gui;
 
+import io.github.nicolazlxl.TesteSQLPOO.Transacao.Transacao;
+import io.github.nicolazlxl.TesteSQLPOO.Transacao.TransacaoRepository;
+import java.time.LocalDate;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author taina
  */
 public class CadastroNovaTransacao extends javax.swing.JFrame {
 
+    private final DefaultListModel<Transacao> modelTransacao;
+    private final TransacaoRepository repository;
     /**
      * Creates new form CadastroNovaTransacao
      */
     public CadastroNovaTransacao() {
+        
+        repository = new TransacaoRepository();
+        
+        modelTransacao = new DefaultListModel<>();
+        modelTransacao.addAll(repository.findAll());
         initComponents();
+        
+        lblAlerta.setVisible(false);
     }
 
     /**
@@ -26,6 +42,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroTransacao = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -38,6 +55,10 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         txtDataTransacao = new javax.swing.JTextField();
         txtContaOrigemTransacao = new javax.swing.JTextField();
         bntSalvar = new javax.swing.JButton();
+        lblContaDestinoTransacao = new javax.swing.JLabel();
+        txtContaDestinoTransacao = new javax.swing.JTextField();
+        lblFuncionario = new javax.swing.JLabel();
+        txtFuncionario = new javax.swing.JTextField();
         pnlListagem = new javax.swing.JPanel();
         lblTransacaoes = new javax.swing.JLabel();
         scrTransacoes = new javax.swing.JScrollPane();
@@ -68,6 +89,17 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         lblContaOrigemTransacao.setText("Conta de Origem:");
 
         bntSalvar.setText("Salvar");
+        bntSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntSalvarActionPerformed(evt);
+            }
+        });
+
+        lblContaDestinoTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblContaDestinoTransacao.setText("Conta de Destino:");
+
+        lblFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFuncionario.setText("Funcionário Responsável:");
 
         javax.swing.GroupLayout pnlCadastroTransacaoLayout = new javax.swing.GroupLayout(pnlCadastroTransacao);
         pnlCadastroTransacao.setLayout(pnlCadastroTransacaoLayout);
@@ -81,20 +113,25 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
                             .addComponent(bntSalvar)
                             .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
                                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblDataTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblValorTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTipoTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(lblContaOrigemTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblContaDestinoTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblDataTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblValorTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblTipoTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                        .addComponent(lblContaOrigemTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTipoTransacao)
+                                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtContaOrigemTransacao)
+                                    .addComponent(txtContaDestinoTransacao)
+                                    .addComponent(txtFuncionario)
+                                    .addComponent(txtTipoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtValorTransacao)
-                                    .addComponent(txtDataTransacao)
-                                    .addComponent(txtContaOrigemTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))))
+                                    .addComponent(txtDataTransacao)))))
                     .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(lblTitulo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         pnlCadastroTransacaoLayout.setVerticalGroup(
             pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,29 +155,70 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
                     .addComponent(lblContaOrigemTransacao)
                     .addComponent(txtContaOrigemTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblContaDestinoTransacao)
+                    .addComponent(txtContaDestinoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFuncionario)
+                    .addComponent(txtFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addComponent(bntSalvar)
-                .addGap(8, 8, 8))
+                .addContainerGap())
         );
 
         tabPrincipal.addTab("Cadastro Transação", pnlCadastroTransacao);
 
         lblTransacaoes.setText("Transações:");
 
+        lstTransacoes.setModel(modelTransacao);
         scrTransacoes.setViewportView(lstTransacoes);
 
+        buttonGroup1.add(radNaoExcluidos);
         radNaoExcluidos.setText("Não Excluídos");
+        radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radNaoExcluidosActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(radExcluidos);
         radExcluidos.setText("Excluídos");
+        radExcluidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radExcluidosActionPerformed(evt);
+            }
+        });
 
         bntExcluir.setText("Excluir");
+        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirActionPerformed(evt);
+            }
+        });
 
         lblLixeira.setText("Lixeira:");
 
         bntRestaurarLixeira.setText("Restaurar");
+        bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRestaurarLixeiraActionPerformed(evt);
+            }
+        });
 
         bntExcluirLixeira.setText("Excluir");
+        bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirLixeiraActionPerformed(evt);
+            }
+        });
 
         bntEsvaziarLixeira.setText("Esvaziar");
+        bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntEsvaziarLixeiraActionPerformed(evt);
+            }
+        });
 
         lblAlerta.setBackground(new java.awt.Color(255, 102, 102));
         lblAlerta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -216,11 +294,118 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
+        
+        String tipo = txtTipoTransacao.getText();
+        double valor = Double.parseDouble(txtValorTransacao.getText());
+        LocalDate data = LocalDate.parse(txtDataTransacao.getText());
+        String ContaOrigem = txtContaOrigemTransacao.getText();
+        String ContaDestino = txtContaDestinoTransacao.getText();
+        String Funcionario = txtFuncionario.getText();
+        
+        Transacao t1 = new Transacao();
+        
+        t1.setTipo(tipo);
+        t1.setValor(valor);
+        t1.setData(data);
+        t1.setContaOrigem(ContaOrigem);
+        t1.setContaDestino(ContaDestino);
+        t1.setFuncionario(Funcionario);
+        
+        JOptionPane.showMessageDialog(this, "Transação Concluída com Sucesso!" + "\n"
+                                            + "Tipo: "+ tipo + "\n" 
+                                            + "Valor: " + valor + "\n" 
+                                            + "Data: " + data + "\n"
+                                            + "Conta Origem: " + ContaOrigem + "\n"
+                                            + "Conta Destino: " + ContaDestino + "\n"
+                                            + "Funcionário Responsável:: " + Funcionario + "\n");
+        
+        repository.saveOrUpdate(t1);
+        
+    }//GEN-LAST:event_bntSalvarActionPerformed
+
+    private void radNaoExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNaoExcluidosActionPerformed
+
+        enableTrash(false);
+        modelTransacao.clear();
+        modelTransacao.addAll(repository.findAll());
+        
+    }//GEN-LAST:event_radNaoExcluidosActionPerformed
+
+    private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
+        
+        enableTrash(true);
+        modelTransacao.clear();
+        modelTransacao.addAll(repository.findTrash());
+        
+    }//GEN-LAST:event_radExcluidosActionPerformed
+
+    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
+
+        if(lstTransacoes.getSelectedIndices().length == 0){
+            return;
+        }
+      
+        List<Transacao> selection = lstTransacoes.getSelectedValuesList();
+            
+        for(Transacao aux: selection){
+            
+            aux.setToTrash(true);
+          
+            repository.saveOrUpdate(aux);
+            modelTransacao.removeElement(aux);
+            
+        }
+            
+    }//GEN-LAST:event_bntExcluirActionPerformed
+
+    private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
+ 
+        if(lstTransacoes.getSelectedIndices().length == 0){
+            return;
+        }
+     
+        List<Transacao> selection = lstTransacoes.getSelectedValuesList();
+            
+        for(Transacao aux: selection){
+                
+            aux.setToTrash(false);
+          
+            repository.saveOrUpdate(aux);
+            modelTransacao.removeElement(aux);
+            
+        }
+            
+    }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
+
+    private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
+      
+        if(lstTransacoes.getSelectedIndices().length == 0){
+            return;
+        }
+     
+        List<Transacao> selection = lstTransacoes.getSelectedValuesList();
+            
+        for(Transacao aux: selection){
+                   
+            repository.delete(aux);
+            modelTransacao.removeElement(aux);
+        }
+            
+    }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
+
+    private void bntEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEsvaziarLixeiraActionPerformed
+        
+        repository.EmptyTrash();
+        modelTransacao.clear();
+        
+    }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,12 +434,12 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the ftabPrincipal   java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the ftabPrincipal */
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CadastroNovaTransacao().setVisible(true);
             }
-        })
-        */
+        });  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -263,24 +448,39 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private javax.swing.JButton bntExcluirLixeira;
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton bntSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblAlerta;
+    private javax.swing.JLabel lblContaDestinoTransacao;
     private javax.swing.JLabel lblContaOrigemTransacao;
     private javax.swing.JLabel lblDataTransacao;
+    private javax.swing.JLabel lblFuncionario;
     private javax.swing.JLabel lblLixeira;
     private javax.swing.JLabel lblTipoTransacao;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTransacaoes;
     private javax.swing.JLabel lblValorTransacao;
-    private javax.swing.JList<String> lstTransacoes;
+    private javax.swing.JList<Transacao> lstTransacoes;
     private javax.swing.JPanel pnlCadastroTransacao;
     private javax.swing.JPanel pnlListagem;
     private javax.swing.JRadioButton radExcluidos;
     private javax.swing.JRadioButton radNaoExcluidos;
     private javax.swing.JScrollPane scrTransacoes;
     private javax.swing.JTabbedPane tabPrincipal;
+    private javax.swing.JTextField txtContaDestinoTransacao;
     private javax.swing.JTextField txtContaOrigemTransacao;
     private javax.swing.JTextField txtDataTransacao;
+    private javax.swing.JTextField txtFuncionario;
     private javax.swing.JTextField txtTipoTransacao;
     private javax.swing.JTextField txtValorTransacao;
     // End of variables declaration//GEN-END:variables
+
+    private void enableTrash(boolean status) {
+    
+        bntExcluir.setEnabled(!status);
+
+        bntExcluirLixeira.setEnabled(status);
+        bntRestaurarLixeira.setEnabled(status);
+        bntEsvaziarLixeira.setEnabled(status);
+    }
+
 }
