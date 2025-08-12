@@ -12,7 +12,7 @@ import io.github.nicolazlxl.TesteSQLPOO.Entidades.Repository;
  *
  * @author taina
  */
-public class FuncionarioRepository 
+public class FaturaRepository 
     extends Repository<Fatura> {
      @Override
     public String getJpqlFindAll() {
@@ -40,3 +40,4 @@ public class FuncionarioRepository
     }
     
 }
+
