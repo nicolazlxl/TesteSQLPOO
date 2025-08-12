@@ -7,6 +7,7 @@ package io.github.nicolazlxl.TesteSQLPOO.gui;
 import io.github.nicolazlxl.TesteSQLPOO.Contrato.Contrato;
 import io.github.nicolazlxl.TesteSQLPOO.Contrato.ContratoRepository;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -305,9 +306,33 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-           double valorTotal = Double.parseDouble(txtValorTotal.getText());
+        LocalDate dataContrato;
+        
+        try{
+            dataContrato = LocalDate.parse(txtDataCadastro.getText());
+            
+        }catch(java.time.format.DateTimeParseException e){
+            JOptionPane.showMessageDialog(this, "Formato de Data inválido! Use AAAA-MM-DD", "ERRO DE FORMTO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        LocalDate hoje = LocalDate.now();
+        if(dataContrato.isAfter(hoje)){
+            JOptionPane.showMessageDialog(this, "A data do contrato não pode ser uma data futura","Data Inválida", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        LocalDate dataMinima = LocalDate.of(1900,1,1);
+        if(dataContrato.isBefore(dataMinima)){
+            JOptionPane.showMessageDialog(this, "Adata do contrato não pode ser anterior a 1900", 
+                    "Data Inválida",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try{
+            double valorTotal = Double.parseDouble(txtValorTotal.getText());
            String status = txtStatus.getText();
-           LocalDate dataContrato = LocalDate.parse(txtDataCadastro.getText());
            
            Contrato ct1 = new Contrato();
            ContratoRepository ct1Repository = new ContratoRepository();
@@ -315,14 +340,42 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
            ct1.setDataContrato(dataContrato);
            ct1.setStatus(status);
            ct1.setValorTotal(valorTotal);
-
-        JOptionPane.showMessageDialog(null, "Contrato Criado:" + 
+           
+           ct1Repository.saveOrUpdate(ct1);
+           
+           JOptionPane.showMessageDialog(null, "Contrato Criado:" + 
                                              "\n" + "\n"
                                             + valorTotal + "\n"
                                              + dataContrato + "\n"
                                              + status + "\n");
-        
-        ct1Repository.saveOrUpdate(ct1);
+           
+           txtValorTotal.setText("");
+           txtStatus.setText("");
+           txtDataCadastro.setText("");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"O valor total deve ser um número válido",
+                    "erro de fortmato", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+//           double valorTotal = Double.parseDouble(txtValorTotal.getText());
+//           String status = txtStatus.getText();
+//           LocalDate dataContrato = LocalDate.parse(txtDataCadastro.getText());
+//           
+//           Contrato ct1 = new Contrato();
+//           ContratoRepository ct1Repository = new ContratoRepository();
+//           
+//           ct1.setDataContrato(dataContrato);
+//           ct1.setStatus(status);
+//           ct1.setValorTotal(valorTotal);
+//
+//        JOptionPane.showMessageDialog(null, "Contrato Criado:" + 
+//                                             "\n" + "\n"
+//                                            + valorTotal + "\n"
+//                                             + dataContrato + "\n"
+//                                             + status + "\n");
+//        
+//        ct1Repository.saveOrUpdate(ct1);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radPresenteBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresenteBancoActionPerformed
