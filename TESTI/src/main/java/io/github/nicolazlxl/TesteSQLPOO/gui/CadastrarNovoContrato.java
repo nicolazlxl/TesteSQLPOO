@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Dell
+ * @author Sarah Emanuelle
  */
 public class CadastrarNovoContrato extends javax.swing.JFrame {
 
@@ -556,3 +556,4 @@ public class CadastrarNovoContrato extends javax.swing.JFrame {
           timer.start();
     }
 }
+
