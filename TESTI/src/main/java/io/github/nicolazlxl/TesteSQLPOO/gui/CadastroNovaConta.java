@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.Timer;
 
 /**
  *
@@ -321,15 +322,13 @@ public class CadastroNovaConta extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        
         String numero = txtNumero.getText();
         double saldo = Double.parseDouble (txtSaldo.getText());
         String status = txtStatus.getText();
         LocalDate dataCriacao = LocalDate.parse(txtDataCriacao.getText());
         double limiteDiariSaque = Double.parseDouble (txtLimiteDiarioSaque.getText());
         
-        //JOptionPane.showMessageDialog(this,"Conta Cadastrada com Sucesso");
-        JOptionPane.showMessageDialog(this, "Conta Cadastrada!" + "\n"
+        JOptionPane.showMessageDialog(this, "Conta Cadastrada com Sucesso!" + "\n"
                                             + "Numero: "+ numero + "\n" 
                                             + "Saldo: " + saldo + "\n" 
                                             + "Status: " + status + "\n" 
@@ -337,7 +336,6 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                                             + "Limite Diário de Saque:" + limiteDiariSaque);
          
         Conta c1 = new Conta();
-        ContaRepository CRepository = new ContaRepository();
         
         c1.setNumero(numero);
         c1.setSaldo(saldo);
@@ -345,33 +343,35 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         c1.setDataCriacao(dataCriacao);
         c1.setLimiteDiariSaque (limiteDiariSaque);
         
-        new ContaRepository().saveOrUpdate(c1);
-        //repository.saveOrUpdate(c1);
+        repository.saveOrUpdate(c1);
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
-        // TODO add your handling code here:
+
         enableTrash(true);
         modelConta.clear();
         modelConta.addAll(repository.findTrash());
+        
     }//GEN-LAST:event_radExcluidosActionPerformed
 
     private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
-        // TODO add your handling code here:
+
         if(lstContas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma conta!");
             return;
         }
       
-            List<Conta> selection = lstContas.getSelectedValuesList();
+        List<Conta> selection = lstContas.getSelectedValuesList();
             
-            for(Conta aux: selection){
+        for(Conta aux: selection){
                 
-                aux.setToTrash(true);
+            aux.setToTrash(true);
           
             repository.saveOrUpdate(aux);
-            modelConta.removeElement(aux);
-            }
+            modelConta.removeElement(aux);      
+        }  
+        
     }//GEN-LAST:event_bntExcluirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -383,47 +383,55 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     }//GEN-LAST:event_radNaoExcluidosItemStateChanged
 
     private void radNaoExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNaoExcluidosActionPerformed
-        // TODO add your handling code here:
+
         enableTrash(false);
         modelConta.clear();
         modelConta.addAll(repository.findAll());
+        
     }//GEN-LAST:event_radNaoExcluidosActionPerformed
 
     private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
-        // TODO add your handling code here:
+      
         if(lstContas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma conta!");
             return;
         }
      
-            List<Conta> selection = lstContas.getSelectedValuesList();
+        List<Conta> selection = lstContas.getSelectedValuesList();
             
-            for(Conta aux: selection){
+        for(Conta aux: selection){
                 
-                aux.setToTrash(false);
+            aux.setToTrash(false);
           
-                repository.saveOrUpdate(aux);
-                modelConta.removeElement(aux);
-            }
+            repository.saveOrUpdate(aux);
+            modelConta.removeElement(aux);      
+        }
+        
     }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
 
     private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
-        // TODO add your handling code here:
-         if(lstContas.getSelectedIndices().length == 0){
+ 
+        if(lstContas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma conta!");
             return;
         }
      
-            List<Conta> selection = lstContas.getSelectedValuesList();
+        List<Conta> selection = lstContas.getSelectedValuesList();
             
-            for(Conta aux: selection){
-                repository.delete(aux);
-                modelConta.removeElement(aux);
-            }
+        for(Conta aux: selection){
+            repository.delete(aux);
+            modelConta.removeElement(aux);
+            showWarning("Conta Excluída!");
+        }
+        
     }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
 
     private void bntEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEsvaziarLixeiraActionPerformed
-        // TODO add your handling code here:
+
         repository.EmptyTrash();
         modelConta.clear();
+        showWarning("Lixeira esvaziada");
+        
     }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
     /**
@@ -502,4 +510,18 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         bntEsvaziarLixeira.setEnabled(status);
     }
 
+    
+        private void showWarning(String warning) {
+            
+          lblAlerta.setText(warning);
+          lblAlerta.setVisible(true);
+          
+          Timer timer = new Timer(4000, (e) -> {
+              lblAlerta.setVisible(false);
+              ((Timer) e.getSource()).stop();
+          });
+          
+          timer.setRepeats(false);
+          timer.start();
+    }
 }
