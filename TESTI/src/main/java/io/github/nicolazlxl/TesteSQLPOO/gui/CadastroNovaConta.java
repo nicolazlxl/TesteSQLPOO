@@ -56,12 +56,12 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         lblDataCriacao = new javax.swing.JLabel();
         lblLimiteDiarioSaque = new javax.swing.JLabel();
         txtSaldo = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         txtDataCriacao = new javax.swing.JTextField();
         txtLimiteDiarioSaque = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
+        cmbStatusConta = new javax.swing.JComboBox<>();
         pnlListagem = new javax.swing.JPanel();
         lblContas = new javax.swing.JLabel();
         scrContas = new javax.swing.JScrollPane();
@@ -87,21 +87,35 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Conta");
 
+        tabPrincipal.setBackground(new java.awt.Color(221, 255, 221));
+        tabPrincipal.setForeground(new java.awt.Color(0, 102, 51));
+
+        pnlCadastroConta.setBackground(new java.awt.Color(221, 255, 221));
+        pnlCadastroConta.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 51)));
+
+        lblNumero.setForeground(new java.awt.Color(0, 102, 51));
         lblNumero.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNumero.setText("Número:");
 
+        lblSaldo.setForeground(new java.awt.Color(0, 102, 51));
         lblSaldo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSaldo.setText("Saldo:");
 
+        lblStatus.setForeground(new java.awt.Color(0, 102, 51));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStatus.setText("Status:");
 
+        lblDataCriacao.setForeground(new java.awt.Color(0, 102, 51));
         lblDataCriacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDataCriacao.setText("Data de Criação:");
 
+        lblLimiteDiarioSaque.setForeground(new java.awt.Color(0, 102, 51));
         lblLimiteDiarioSaque.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblLimiteDiarioSaque.setText("Limite Diário de Saque:");
 
+        btnSalvar.setBackground(new java.awt.Color(0, 102, 51));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,9 +123,15 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
-        lblTitulo.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblTitulo.setBackground(new java.awt.Color(0, 102, 51));
+        lblTitulo.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Seja Bem-Vindo!");
+        lblTitulo.setText("Cadastre uma nova Conta:");
+        lblTitulo.setOpaque(true);
+
+        cmbStatusConta.setForeground(new java.awt.Color(0, 102, 51));
+        cmbStatusConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativa", "Inativa" }));
 
         javax.swing.GroupLayout pnlCadastroContaLayout = new javax.swing.GroupLayout(pnlCadastroConta);
         pnlCadastroConta.setLayout(pnlCadastroContaLayout);
@@ -121,69 +141,70 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                 .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroContaLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSalvar)
-                            .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblDataCriacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblLimiteDiarioSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblSaldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtSaldo)
-                                    .addComponent(txtStatus)
-                                    .addComponent(txtDataCriacao)
-                                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                                    .addComponent(txtNumero)))))
+                        .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDataCriacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSaldo)
+                            .addComponent(txtDataCriacao)
+                            .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                            .addComponent(txtNumero)
+                            .addComponent(cmbStatusConta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlCadastroContaLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         pnlCadastroContaLayout.setVerticalGroup(
             pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(15, 15, 15)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNumero)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(lblSaldo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 10, Short.MAX_VALUE))
-                    .addGroup(pnlCadastroContaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblStatus)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDataCriacao)
-                    .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLimiteDiarioSaque)
-                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 22, Short.MAX_VALUE)
-                .addComponent(btnSalvar))
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSaldo))
+                .addGap(10, 10, 10)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbStatusConta, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDataCriacao))
+                .addGap(12, 12, 12)
+                .addGroup(pnlCadastroContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLimiteDiarioSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLimiteDiarioSaque))
+                .addGap(31, 31, 31)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tabPrincipal.addTab("Cadastrar Conta", pnlCadastroConta);
 
+        pnlListagem.setBackground(new java.awt.Color(221, 255, 221));
+        pnlListagem.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 51)));
+
+        lblContas.setBackground(new java.awt.Color(0, 102, 51));
+        lblContas.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblContas.setForeground(new java.awt.Color(0, 102, 51));
         lblContas.setText("Contas:");
 
         lstContas.setModel(modelConta);
         scrContas.setViewportView(lstContas);
 
         buttonGroup1.add(radNaoExcluidos);
+        radNaoExcluidos.setForeground(new java.awt.Color(0, 102, 51));
         radNaoExcluidos.setText("Não excluídos");
         radNaoExcluidos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -197,6 +218,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(radExcluidos);
+        radExcluidos.setForeground(new java.awt.Color(0, 102, 51));
         radExcluidos.setText("Excluídos");
         radExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +226,9 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        bntExcluir.setBackground(new java.awt.Color(0, 102, 51));
+        bntExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluir.setText("Excluir");
         bntExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,8 +236,13 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        lblLixeira.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLixeira.setForeground(new java.awt.Color(0, 102, 51));
         lblLixeira.setText("Lixeira:");
 
+        bntRestaurarLixeira.setBackground(new java.awt.Color(0, 102, 51));
+        bntRestaurarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntRestaurarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntRestaurarLixeira.setText("Restaurar");
         bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +250,9 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        bntExcluirLixeira.setBackground(new java.awt.Color(0, 102, 51));
+        bntExcluirLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluirLixeira.setText("Excluir");
         bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +260,9 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
+        bntEsvaziarLixeira.setBackground(new java.awt.Color(0, 102, 51));
+        bntEsvaziarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntEsvaziarLixeira.setText("Esvaziar");
         bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +270,8 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             }
         });
 
-        lblAlerta.setBackground(new java.awt.Color(255, 153, 153));
+        lblAlerta.setBackground(new java.awt.Color(0, 204, 51));
+        lblAlerta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAlerta.setForeground(new java.awt.Color(255, 255, 255));
         lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione uma conta!");
@@ -248,58 +285,58 @@ public class CadastroNovaConta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblContas)
-                        .addGap(103, 103, 103)
-                        .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrContas, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblLixeira)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListagemLayout.createSequentialGroup()
-                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlListagemLayout.createSequentialGroup()
+                        .addComponent(scrContas, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListagemLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblLixeira)
+                                    .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(pnlListagemLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(radNaoExcluidos)
-                                    .addComponent(radExcluidos))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlListagemLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(bntExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlListagemLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(371, 371, 371))))
+                                    .addComponent(bntExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                                        .addComponent(radExcluidos)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(365, 365, 365))
+                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                        .addComponent(lblContas)
+                        .addGap(701, 701, 701))))
+            .addGroup(pnlListagemLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlListagemLayout.setVerticalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListagemLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContas)
-                    .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
+                .addComponent(lblContas)
+                .addGap(15, 15, 15)
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
                         .addComponent(radNaoExcluidos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radExcluidos)
+                        .addComponent(radExcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bntExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblLixeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntRestaurarLixeira)
+                        .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntExcluirLixeira)
+                        .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bntEsvaziarLixeira))
+                        .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrContas, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         tabPrincipal.addTab("Listagem", pnlListagem);
@@ -317,8 +354,8 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPrincipal)
-                .addContainerGap())
+                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -333,9 +370,20 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             return; 
         }
         
-        double saldo = Double.parseDouble (txtSaldo.getText());
+        double saldo;
+        try {
+            saldo = Double.parseDouble(txtSaldo.getText());
+            if (saldo <= 0) {
+                JOptionPane.showMessageDialog(this, "O saldo deve ser positivo.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O valor deve ser um número válido.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
-        String status = txtStatus.getText();
+        
+        String status = (String) cmbStatusConta.getSelectedItem(); 
         
         LocalDate dataCriacao;
         
@@ -345,8 +393,20 @@ public class CadastroNovaConta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data inválida! Use o formato AAAA-MM-DD.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         
-        double limiteDiariSaque = Double.parseDouble (txtLimiteDiarioSaque.getText());
+        double limiteDiariSaque; 
+
+        try {
+        limiteDiariSaque = Double.parseDouble(txtLimiteDiarioSaque.getText());
+        if (limiteDiariSaque <= 0) {
+            JOptionPane.showMessageDialog(this, "O limite de saque deve ser um valor maior que zero.", "Valor Inválido", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Digite um valor numérico válido para o limite de saque.","Formato Inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         JOptionPane.showMessageDialog(this, "Conta Cadastrada com Sucesso!" + "\n"
                                             + "Numero: "+ numero + "\n" 
@@ -364,14 +424,13 @@ public class CadastroNovaConta extends javax.swing.JFrame {
         c1.setLimiteDiariSaque (limiteDiariSaque);
         
         repository.saveOrUpdate(c1);
+        modelConta.addElement(c1);
 
         txtNumero.setText("");
         txtSaldo.setText("");
-        txtStatus.setText("");
+        cmbStatusConta.setSelectedIndex(-1);
         txtDataCriacao.setText("");
         txtLimiteDiarioSaque.setText("");
-
-        JOptionPane.showMessageDialog(this, "Conta Cadastrada com Sucesso!");
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -504,6 +563,7 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbStatusConta;
     private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel lblAlerta;
@@ -526,7 +586,6 @@ public class CadastroNovaConta extends javax.swing.JFrame {
     private javax.swing.JTextField txtLimiteDiarioSaque;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtSaldo;
-    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 
     private void enableTrash(boolean status) {
