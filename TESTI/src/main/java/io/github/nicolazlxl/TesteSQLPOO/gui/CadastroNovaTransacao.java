@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -349,6 +350,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
 
         if(lstTransacoes.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma transação!");
             return;
         }
       
@@ -359,8 +361,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             aux.setToTrash(true);
           
             repository.saveOrUpdate(aux);
-            modelTransacao.removeElement(aux);
-            
+            modelTransacao.removeElement(aux);   
         }
             
     }//GEN-LAST:event_bntExcluirActionPerformed
@@ -368,6 +369,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
  
         if(lstTransacoes.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma transação!");
             return;
         }
      
@@ -378,8 +380,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             aux.setToTrash(false);
           
             repository.saveOrUpdate(aux);
-            modelTransacao.removeElement(aux);
-            
+            modelTransacao.removeElement(aux);     
         }
             
     }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
@@ -387,6 +388,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
       
         if(lstTransacoes.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma transação!");
             return;
         }
      
@@ -396,6 +398,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
                    
             repository.delete(aux);
             modelTransacao.removeElement(aux);
+            showWarning("Transação Excluída!");
         }
             
     }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
@@ -404,6 +407,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         
         repository.EmptyTrash();
         modelTransacao.clear();
+        showWarning("Lixeira esvaziada");
         
     }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
@@ -483,4 +487,18 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         bntEsvaziarLixeira.setEnabled(status);
     }
 
+    private void showWarning(String warning) {
+            
+        lblAlerta.setText(warning);
+        lblAlerta.setVisible(true);
+          
+        Timer timer = new Timer(4000, (e) -> {
+            lblAlerta.setVisible(false);
+            ((Timer) e.getSource()).stop();
+        });
+          
+        timer.setRepeats(false);
+        timer.start();
+    }
+    
 }
