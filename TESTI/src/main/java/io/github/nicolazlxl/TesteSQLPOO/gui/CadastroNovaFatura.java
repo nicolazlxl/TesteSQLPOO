@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -306,6 +307,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private void bntRestaurarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRestaurarLixeiraActionPerformed
        
         if(lstFaturas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma fatura!");
             return;
         }
      
@@ -324,6 +326,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
         
         if(lstFaturas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma fatura!");
             return;
         }
       
@@ -342,6 +345,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private void bntExcluirLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirLixeiraActionPerformed
 
         if(lstFaturas.getSelectedIndices().length == 0){
+            showWarning("Selecione ao menos uma fatura!");
             return;
         }
      
@@ -350,7 +354,8 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         for(Fatura aux: selection){
             
             repository.delete(aux);
-            modelFatura.removeElement(aux); 
+            modelFatura.removeElement(aux);
+            showWarning("Fatura Excluída!");
         }
  
     }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
@@ -359,6 +364,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         
         repository.EmptyTrash();
         modelFatura.clear();
+        showWarning("Lixeira esvaziada");
         
     }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
@@ -431,5 +437,20 @@ private void enableTrash(boolean status) {
         bntRestaurarLixeira.setEnabled(status);
         bntEsvaziarLixeira.setEnabled(status);
     }
+
+    private void showWarning(String warning) {
+            
+        lblAlerta.setText(warning);
+        lblAlerta.setVisible(true);
+          
+        Timer timer = new Timer(4000, (e) -> {
+            lblAlerta.setVisible(false);
+            ((Timer) e.getSource()).stop();
+        });
+          
+        timer.setRepeats(false);
+        timer.start();
+    }
+
 
 }
