@@ -44,6 +44,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jComboBox1 = new javax.swing.JComboBox<>();
         tabPrincipal = new javax.swing.JTabbedPane();
         pnlCadastroFatura = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -52,8 +53,8 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         lblStatusFatura = new javax.swing.JLabel();
         txtDataFechamentoFatura = new javax.swing.JTextField();
         txtValorTotalFatura = new javax.swing.JTextField();
-        txtStatusFatura = new javax.swing.JTextField();
         bntSalvar = new javax.swing.JButton();
+        cmbStatusFatura = new javax.swing.JComboBox<>();
         pnlListagem = new javax.swing.JPanel();
         lblFaturas = new javax.swing.JLabel();
         scrFaturas = new javax.swing.JScrollPane();
@@ -67,23 +68,49 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         bntEsvaziarLixeira = new javax.swing.JButton();
         lblAlerta = new javax.swing.JLabel();
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitulo.setText("Seja Bem-Vindo!");
+        tabPrincipal.setForeground(new java.awt.Color(10, 54, 158));
 
+        pnlCadastroFatura.setBackground(new java.awt.Color(221, 221, 253));
+        pnlCadastroFatura.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(10, 54, 158)));
+
+        lblTitulo.setBackground(new java.awt.Color(10, 54, 158));
+        lblTitulo.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Cadastre uma nova Fatura:");
+        lblTitulo.setOpaque(true);
+
+        lblDataFechamentoFatura.setForeground(new java.awt.Color(10, 54, 158));
         lblDataFechamentoFatura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDataFechamentoFatura.setText("Data de Fechamento da Fatura:");
 
+        lblValorTotalFatura.setForeground(new java.awt.Color(10, 54, 158));
         lblValorTotalFatura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblValorTotalFatura.setText("Valor total:");
 
+        lblStatusFatura.setForeground(new java.awt.Color(10, 54, 158));
         lblStatusFatura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStatusFatura.setText("Status:");
 
+        bntSalvar.setBackground(new java.awt.Color(10, 54, 158));
+        bntSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntSalvar.setForeground(new java.awt.Color(255, 255, 255));
         bntSalvar.setText("Salvar");
         bntSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntSalvarActionPerformed(evt);
+            }
+        });
+
+        cmbStatusFatura.setForeground(new java.awt.Color(10, 54, 158));
+        cmbStatusFatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em aberto", "Paga", "Cancelada" }));
+        cmbStatusFatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbStatusFaturaActionPerformed(evt);
             }
         });
 
@@ -100,46 +127,52 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
                             .addComponent(lblDataFechamentoFatura)
                             .addComponent(lblStatusFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDataFechamentoFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtValorTotalFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStatusFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntSalvar)))
+                        .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDataFechamentoFatura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(txtValorTotalFatura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbStatusFatura, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnlCadastroFaturaLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         pnlCadastroFaturaLayout.setVerticalGroup(
             pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroFaturaLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataFechamentoFatura)
-                    .addComponent(txtDataFechamentoFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataFechamentoFatura, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(lblDataFechamentoFatura))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValorTotalFatura)
-                    .addComponent(txtValorTotalFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValorTotalFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblStatusFatura)
-                    .addComponent(txtStatusFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(bntSalvar)
-                .addGap(34, 34, 34))
+                .addGroup(pnlCadastroFaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbStatusFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatusFatura))
+                .addGap(38, 38, 38)
+                .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         tabPrincipal.addTab("Cadastro Fatura", pnlCadastroFatura);
 
+        pnlListagem.setBackground(new java.awt.Color(221, 221, 253));
+        pnlListagem.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(10, 54, 158)));
+
+        lblFaturas.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblFaturas.setForeground(new java.awt.Color(10, 54, 158));
         lblFaturas.setText("Faturas:");
 
         lstFaturas.setModel(modelFatura);
         scrFaturas.setViewportView(lstFaturas);
 
         buttonGroup1.add(radNaoExcluidos);
+        radNaoExcluidos.setForeground(new java.awt.Color(10, 54, 158));
         radNaoExcluidos.setText("Não Excluídos");
         radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +181,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(radExcluidos);
+        radExcluidos.setForeground(new java.awt.Color(10, 54, 158));
         radExcluidos.setText("Excluídos");
         radExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +189,9 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
+        bntExcluir.setBackground(new java.awt.Color(10, 54, 158));
+        bntExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluir.setText("Excluir");
         bntExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,8 +199,13 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
+        lblLixeira.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLixeira.setForeground(new java.awt.Color(10, 54, 158));
         lblLixeira.setText("Lixeira:");
 
+        bntRestaurarLixeira.setBackground(new java.awt.Color(10, 54, 158));
+        bntRestaurarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntRestaurarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntRestaurarLixeira.setText("Restaurar");
         bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +213,9 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
+        bntExcluirLixeira.setBackground(new java.awt.Color(10, 54, 158));
+        bntExcluirLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluirLixeira.setText("Excluir");
         bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +223,9 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
+        bntEsvaziarLixeira.setBackground(new java.awt.Color(10, 54, 158));
+        bntEsvaziarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntEsvaziarLixeira.setText("Esvaziar");
         bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,9 +233,10 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             }
         });
 
-        lblAlerta.setBackground(new java.awt.Color(255, 153, 153));
-        lblAlerta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAlerta.setBackground(new java.awt.Color(0, 153, 255));
+        lblAlerta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAlerta.setForeground(new java.awt.Color(255, 255, 255));
+        lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione uma Fatura!");
         lblAlerta.setOpaque(true);
 
@@ -197,35 +246,34 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListagemLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblFaturas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblAlerta))
-                    .addComponent(scrFaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radNaoExcluidos)
-                    .addComponent(lblLixeira)
-                    .addComponent(radExcluidos)
+                    .addComponent(lblFaturas)
+                    .addComponent(scrFaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                        .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListagemLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(radNaoExcluidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLixeira)
+                            .addComponent(radExcluidos)
+                            .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         pnlListagemLayout.setVerticalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListagemLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFaturas)
-                    .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(lblFaturas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
                         .addComponent(radNaoExcluidos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,14 +284,14 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
                         .addComponent(lblLixeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bntRestaurarLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntExcluirLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntEsvaziarLixeira)
-                        .addGap(18, 18, 18))
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(scrFaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bntEsvaziarLixeira))
+                    .addComponent(scrFaturas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabPrincipal.addTab("Listagem", pnlListagem);
@@ -253,15 +301,15 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabPrincipal)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,11 +317,34 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
 
     private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
         
-        LocalDate dataFechamento = LocalDate.parse(txtDataFechamentoFatura.getText());
-        double valorTotal = Double.parseDouble(txtValorTotalFatura.getText());
-        String status = txtStatusFatura.getText();
+        LocalDate dataFechamento;
         
-        JOptionPane.showMessageDialog(this, "Fatura Gerada com Sucesso!" + "\n"
+        try {
+            dataFechamento = LocalDate.parse(txtDataFechamentoFatura.getText());
+        if (dataFechamento.isBefore(LocalDate.now())) {
+            JOptionPane.showMessageDialog(this, "A data não pode ser uma data passada.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        } catch (java.time.format.DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Data inválida! Use o formato AAAA-MM-DD.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        double valorTotal;
+        try {
+            valorTotal = Double.parseDouble(txtValorTotalFatura.getText());
+            if (valorTotal <= 0) {
+                JOptionPane.showMessageDialog(this, "O valor da fatura deve ser maior que zero.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O valor deve ser um número válido.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String status = (String) cmbStatusFatura.getSelectedItem(); 
+        
+        JOptionPane.showMessageDialog(this, "Fatura Cadastrada com Sucesso!" + "\n"
                                             + "Data de Fechamento: "+ dataFechamento + "\n" 
                                             + "Valor Total: " + valorTotal + "\n" 
                                             + "Status: " + status + "\n");
@@ -285,6 +356,11 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         f1.setStatus (status);
         
         repository.saveOrUpdate(f1);
+        modelFatura.addElement(f1);
+        
+        txtDataFechamentoFatura.setText("");
+        txtValorTotalFatura.setText("");
+        cmbStatusFatura.setSelectedIndex(-1);
 
     }//GEN-LAST:event_bntSalvarActionPerformed
 
@@ -368,6 +444,10 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bntEsvaziarLixeiraActionPerformed
 
+    private void cmbStatusFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusFaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStatusFaturaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +490,8 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton bntSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbStatusFatura;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblDataFechamentoFatura;
     private javax.swing.JLabel lblFaturas;
@@ -425,7 +507,6 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrFaturas;
     private javax.swing.JTabbedPane tabPrincipal;
     private javax.swing.JTextField txtDataFechamentoFatura;
-    private javax.swing.JTextField txtStatusFatura;
     private javax.swing.JTextField txtValorTotalFatura;
     // End of variables declaration//GEN-END:variables
 
