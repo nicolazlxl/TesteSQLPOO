@@ -51,7 +51,6 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         lblValorTransacao = new javax.swing.JLabel();
         lblDataTransacao = new javax.swing.JLabel();
         lblContaOrigemTransacao = new javax.swing.JLabel();
-        txtTipoTransacao = new javax.swing.JTextField();
         txtValorTransacao = new javax.swing.JTextField();
         txtDataTransacao = new javax.swing.JTextField();
         txtContaOrigemTransacao = new javax.swing.JTextField();
@@ -60,6 +59,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         txtContaDestinoTransacao = new javax.swing.JTextField();
         lblFuncionario = new javax.swing.JLabel();
         txtFuncionario = new javax.swing.JTextField();
+        cmbTipoTransacao = new javax.swing.JComboBox<>();
         pnlListagem = new javax.swing.JPanel();
         lblTransacaoes = new javax.swing.JLabel();
         scrTransacoes = new javax.swing.JScrollPane();
@@ -75,20 +75,39 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitulo.setText("Seja Bem-Vindo!");
+        tabPrincipal.setBackground(new java.awt.Color(240, 211, 255));
+        tabPrincipal.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 0, 102)));
+        tabPrincipal.setForeground(new java.awt.Color(102, 0, 102));
 
+        pnlCadastroTransacao.setBackground(new java.awt.Color(240, 211, 255));
+        pnlCadastroTransacao.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 0, 102)));
+
+        lblTitulo.setBackground(new java.awt.Color(102, 0, 102));
+        lblTitulo.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Faça uma nova Transação:");
+        lblTitulo.setOpaque(true);
+
+        lblTipoTransacao.setForeground(new java.awt.Color(102, 0, 102));
         lblTipoTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoTransacao.setText("Tipo de Transação:");
 
+        lblValorTransacao.setForeground(new java.awt.Color(102, 0, 102));
         lblValorTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblValorTransacao.setText("Valor:");
 
+        lblDataTransacao.setForeground(new java.awt.Color(102, 0, 102));
         lblDataTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDataTransacao.setText("Data:");
 
+        lblContaOrigemTransacao.setForeground(new java.awt.Color(102, 0, 102));
         lblContaOrigemTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblContaOrigemTransacao.setText("Conta de Origem:");
 
+        bntSalvar.setBackground(new java.awt.Color(102, 0, 102));
+        bntSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntSalvar.setForeground(new java.awt.Color(255, 255, 255));
         bntSalvar.setText("Salvar");
         bntSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,62 +115,68 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
+        lblContaDestinoTransacao.setForeground(new java.awt.Color(102, 0, 102));
         lblContaDestinoTransacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblContaDestinoTransacao.setText("Conta de Destino:");
 
+        lblFuncionario.setForeground(new java.awt.Color(102, 0, 102));
         lblFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFuncionario.setText("Funcionário Responsável:");
+
+        cmbTipoTransacao.setForeground(new java.awt.Color(102, 0, 102));
+        cmbTipoTransacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PIX", "TED", "DOC" }));
 
         javax.swing.GroupLayout pnlCadastroTransacaoLayout = new javax.swing.GroupLayout(pnlCadastroTransacao);
         pnlCadastroTransacao.setLayout(pnlCadastroTransacaoLayout);
         pnlCadastroTransacaoLayout.setHorizontalGroup(
             pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
-                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroTransacaoLayout.createSequentialGroup()
+                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bntSalvar)
-                            .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
-                                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblContaDestinoTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblDataTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblValorTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblTipoTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                        .addComponent(lblContaOrigemTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContaOrigemTransacao)
-                                    .addComponent(txtContaDestinoTransacao)
-                                    .addComponent(txtFuncionario)
-                                    .addComponent(txtTipoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtValorTransacao)
-                                    .addComponent(txtDataTransacao)))))
-                    .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(lblTitulo)))
-                .addGap(47, 47, 47))
+                            .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblContaDestinoTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDataTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblValorTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblTipoTransacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                .addComponent(lblContaOrigemTransacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblFuncionario))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtContaOrigemTransacao)
+                            .addComponent(txtContaDestinoTransacao)
+                            .addComponent(txtFuncionario)
+                            .addComponent(txtValorTransacao)
+                            .addComponent(txtDataTransacao)
+                            .addComponent(cmbTipoTransacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(37, 37, 37))
+            .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         pnlCadastroTransacaoLayout.setVerticalGroup(
             pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroTransacaoLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoTransacao)
-                    .addComponent(txtTipoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cmbTipoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValorTransacao)
                     .addComponent(txtValorTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataTransacao)
-                    .addComponent(txtDataTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtDataTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDataTransacao))
+                .addGap(21, 21, 21)
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContaOrigemTransacao)
                     .addComponent(txtContaOrigemTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,23 +184,28 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblContaDestinoTransacao)
                     .addComponent(txtContaDestinoTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(pnlCadastroTransacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFuncionario)
                     .addComponent(txtFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(bntSalvar)
-                .addContainerGap())
+                .addGap(29, 29, 29)
+                .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         tabPrincipal.addTab("Cadastro Transação", pnlCadastroTransacao);
 
+        pnlListagem.setBackground(new java.awt.Color(240, 211, 255));
+
+        lblTransacaoes.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        lblTransacaoes.setForeground(new java.awt.Color(102, 0, 102));
         lblTransacaoes.setText("Transações:");
 
         lstTransacoes.setModel(modelTransacao);
         scrTransacoes.setViewportView(lstTransacoes);
 
         buttonGroup1.add(radNaoExcluidos);
+        radNaoExcluidos.setForeground(new java.awt.Color(102, 0, 102));
         radNaoExcluidos.setText("Não Excluídos");
         radNaoExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +214,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(radExcluidos);
+        radExcluidos.setForeground(new java.awt.Color(102, 0, 102));
         radExcluidos.setText("Excluídos");
         radExcluidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +222,9 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
+        bntExcluir.setBackground(new java.awt.Color(102, 0, 102));
+        bntExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluir.setText("Excluir");
         bntExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,8 +232,13 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
+        lblLixeira.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLixeira.setForeground(new java.awt.Color(102, 0, 102));
         lblLixeira.setText("Lixeira:");
 
+        bntRestaurarLixeira.setBackground(new java.awt.Color(102, 0, 102));
+        bntRestaurarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntRestaurarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntRestaurarLixeira.setText("Restaurar");
         bntRestaurarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +246,9 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
+        bntExcluirLixeira.setBackground(new java.awt.Color(102, 0, 102));
+        bntExcluirLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntExcluirLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntExcluirLixeira.setText("Excluir");
         bntExcluirLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +256,9 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
+        bntEsvaziarLixeira.setBackground(new java.awt.Color(102, 0, 102));
+        bntEsvaziarLixeira.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bntEsvaziarLixeira.setForeground(new java.awt.Color(255, 255, 255));
         bntEsvaziarLixeira.setText("Esvaziar");
         bntEsvaziarLixeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,9 +266,10 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             }
         });
 
-        lblAlerta.setBackground(new java.awt.Color(255, 102, 102));
-        lblAlerta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAlerta.setBackground(new java.awt.Color(204, 0, 255));
+        lblAlerta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAlerta.setForeground(new java.awt.Color(255, 255, 255));
+        lblAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlerta.setText("Selecione uma Transação!");
         lblAlerta.setOpaque(true);
 
@@ -234,49 +280,52 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             .addGroup(pnlListagemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTransacaoes)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(scrTransacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlListagemLayout.createSequentialGroup()
+                                .addComponent(scrTransacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListagemLayout.createSequentialGroup()
+                                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)))
                         .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radNaoExcluidos)
                             .addComponent(radExcluidos)
                             .addComponent(lblLixeira)
-                            .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bntExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))
-                    .addGroup(pnlListagemLayout.createSequentialGroup()
-                        .addComponent(lblTransacaoes)
-                        .addGap(41, 41, 41)
-                        .addComponent(lblAlerta)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                            .addComponent(bntEsvaziarLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntExcluirLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntRestaurarLixeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(14, 14, 14))
         );
         pnlListagemLayout.setVerticalGroup(
             pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListagemLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTransacaoes)
-                    .addComponent(lblAlerta, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
-                .addGap(9, 9, 9)
+                .addGap(11, 11, 11)
+                .addComponent(lblTransacaoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrTransacoes)
                     .addGroup(pnlListagemLayout.createSequentialGroup()
                         .addComponent(radNaoExcluidos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(radExcluidos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntExcluir)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntRestaurarLixeira)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntExcluirLixeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bntEsvaziarLixeira)))
-                .addContainerGap())
+                        .addComponent(lblLixeira)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bntRestaurarLixeira)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bntExcluirLixeira)
+                        .addGap(18, 18, 18)
+                        .addComponent(bntEsvaziarLixeira)
+                        .addGap(35, 35, 35))
+                    .addGroup(pnlListagemLayout.createSequentialGroup()
+                        .addComponent(scrTransacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)))
+                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         tabPrincipal.addTab("Listagem", pnlListagem);
@@ -294,20 +343,57 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
+
         
-        String tipo = txtTipoTransacao.getText();
-        double valor = Double.parseDouble(txtValorTransacao.getText());
-        LocalDate data = LocalDate.parse(txtDataTransacao.getText());
+        String tipo = (String) cmbTipoTransacao.getSelectedItem();
+        
+        double valor;
+        try {
+            valor = Double.parseDouble(txtValorTransacao.getText());
+            if (valor <= 0) {
+                JOptionPane.showMessageDialog(this, "O valor da transação deve ser maior que zero.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O valor deve ser um número válido.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        LocalDate data;
+        
+        try {
+            data = LocalDate.parse(txtDataTransacao.getText());
+            if (data.isBefore(LocalDate.now())) {
+                JOptionPane.showMessageDialog(this, "A data não pode ser uma data passada.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (java.time.format.DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Data inválida! Use o formato AAAA-MM-DD.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         String ContaOrigem = txtContaOrigemTransacao.getText();
+        
+        if (ContaOrigem.length() != 5) {
+            JOptionPane.showMessageDialog(this, "O número da conta deve ter 5 caracteres.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+        
         String ContaDestino = txtContaDestinoTransacao.getText();
+        
+        if (ContaDestino.length() != 5) {
+            JOptionPane.showMessageDialog(this, "O número da conta deve ter 5 caracteres.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+        
         String Funcionario = txtFuncionario.getText();
         
         Transacao t1 = new Transacao();
@@ -328,6 +414,14 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
                                             + "Funcionário Responsável:: " + Funcionario + "\n");
         
         repository.saveOrUpdate(t1);
+        modelTransacao.addElement(t1);
+        
+        cmbTipoTransacao.setSelectedIndex(-1);
+        txtValorTransacao.setText("");
+        txtDataTransacao.setText("");
+        txtContaOrigemTransacao.setText("");
+        txtContaDestinoTransacao.setText("");
+        txtFuncionario.setText("");
         
     }//GEN-LAST:event_bntSalvarActionPerformed
 
@@ -453,6 +547,7 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private javax.swing.JButton bntRestaurarLixeira;
     private javax.swing.JButton bntSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbTipoTransacao;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblContaDestinoTransacao;
     private javax.swing.JLabel lblContaOrigemTransacao;
@@ -474,7 +569,6 @@ public class CadastroNovaTransacao extends javax.swing.JFrame {
     private javax.swing.JTextField txtContaOrigemTransacao;
     private javax.swing.JTextField txtDataTransacao;
     private javax.swing.JTextField txtFuncionario;
-    private javax.swing.JTextField txtTipoTransacao;
     private javax.swing.JTextField txtValorTransacao;
     // End of variables declaration//GEN-END:variables
 
