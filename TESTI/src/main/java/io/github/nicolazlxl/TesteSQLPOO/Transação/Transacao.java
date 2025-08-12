@@ -2,20 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package io.github.nicolazlxl.TesteSQLPOO.Transação;
+package io.github.nicolazlxl.TesteSQLPOO.Transacao;
 
 
-import io.github.nicolazlxl.TesteSQLPOO.Conta.Conta;
-import io.github.nicolazlxl.TesteSQLPOO.Funcionario.Funcionario;
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.ProjectEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.PostLoad;
-import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 /**
  *
@@ -24,14 +18,11 @@ import java.util.Objects;
 @Entity
 public class Transacao 
     extends ProjectEntity
-        implements Serializable{
+        implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     
-  
-
-
     @Column(nullable = false, length = 50)
     private String tipo;
     
@@ -42,16 +33,15 @@ public class Transacao
     private LocalDate data;
       
     @Column(nullable = false)
-    private Conta ContaOrigem;
+    private String ContaOrigem;
         
     @Column(nullable = false)
-    private Conta ContaDestino;
+    private String ContaDestino;
         
     @Column(nullable = false)
-    private Funcionario Funcionario;    
+    private String Funcionario;   
+   
     
-    
-
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
 
         public static long getSerialVersionUID() {
@@ -82,37 +72,35 @@ public class Transacao
         this.data = data;
     }
 
-    public Conta getContaOrigem() {
+    public String getContaOrigem() {
         return ContaOrigem;
     }
 
-    public void setContaOrigem(Conta ContaOrigem) {
+    public void setContaOrigem(String ContaOrigem) {
         this.ContaOrigem = ContaOrigem;
     }
 
-    public Conta getContaDestino() {
+    public String getContaDestino() {
         return ContaDestino;
     }
 
-    public void setContaDestino(Conta ContaDestino) {
+    public void setContaDestino(String ContaDestino) {
         this.ContaDestino = ContaDestino;
     }
 
-    public Funcionario getFuncionario() {
+    public String getFuncionario() {
         return Funcionario;
     }
 
-    public void setFuncionario(Funcionario Funcionario) {
+    public void setFuncionario(String Funcionario) {
         this.Funcionario = Funcionario;
     }
     
     
     
 //</editor-fold>
-
     
-    
-       //<editor-fold defaultstate="collapsed" desc="ToString">
+    //<editor-fold defaultstate="collapsed" desc="ToString">
      @Override
     public String toString() {
         return "Transacao{" + "tipo=" + tipo + ", valor=" + valor + ", data=" + data + ", ContaOrigem=" + ContaOrigem + ", ContaDestino=" + ContaDestino + ", Funcionario=" + Funcionario + '}';
@@ -120,17 +108,5 @@ public class Transacao
     
     //</editor-fold>
 
-   
-
-   
-    
-    
-    
-
-
-   
-
-  
- 
     
 }
