@@ -267,26 +267,24 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
-        // TODO add your handling code here:
+        
         LocalDate dataFechamento = LocalDate.parse(txtDataFechamentoFatura.getText());
         double valorTotal = Double.parseDouble(txtValorTotalFatura.getText());
         String status = txtStatusFatura.getText();
         
-        JOptionPane.showMessageDialog(this, "Fatura Gerada!" + "\n"
+        JOptionPane.showMessageDialog(this, "Fatura Gerada com Sucesso!" + "\n"
                                             + "Data de Fechamento: "+ dataFechamento + "\n" 
                                             + "Valor Total: " + valorTotal + "\n" 
                                             + "Status: " + status + "\n");
          
         Fatura f1 = new Fatura();
-        //FaturaRepository FRepository = new FaturaRepository();
         
         f1.setDataFechamento(dataFechamento);
         f1.setValorTotal(valorTotal);
         f1.setStatus (status);
         
-        new FaturaRepository().saveOrUpdate(f1);
-        //repository.saveOrUpdate(f1);
-        //FRepository().saveorUpdate(f1);
+        repository.saveOrUpdate(f1);
+
     }//GEN-LAST:event_bntSalvarActionPerformed
 
     private void radNaoExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNaoExcluidosActionPerformed
@@ -299,7 +297,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
 
     private void radExcluidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radExcluidosActionPerformed
         
-        enableTrash(false);
+        enableTrash(true);
         modelFatura.clear();
         modelFatura.addAll(repository.findTrash());
         
@@ -311,20 +309,21 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             return;
         }
      
-            List<Fatura> selection = lstFaturas.getSelectedValuesList();
+        List<Fatura> selection = lstFaturas.getSelectedValuesList();
             
-            for(Fatura aux: selection){
+        for(Fatura aux: selection){
                 
-                aux.setToTrash(false);
+            aux.setToTrash(false);
           
-                repository.saveOrUpdate(aux);
-                modelFatura.removeElement(aux);
-            }
+            repository.saveOrUpdate(aux);
+            modelFatura.removeElement(aux);  
+        }
+      
     }//GEN-LAST:event_bntRestaurarLixeiraActionPerformed
 
     private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
         
-         if(lstFaturas.getSelectedIndices().length == 0){
+        if(lstFaturas.getSelectedIndices().length == 0){
             return;
         }
       
@@ -336,7 +335,7 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
           
             repository.saveOrUpdate(aux);
             modelFatura.removeElement(aux);
-         }
+        }
           
     }//GEN-LAST:event_bntExcluirActionPerformed
 
@@ -346,12 +345,14 @@ public class CadastroNovaFatura extends javax.swing.JFrame {
             return;
         }
      
-            List<Fatura> selection = lstFaturas.getSelectedValuesList();
+        List<Fatura> selection = lstFaturas.getSelectedValuesList();
             
-            for(Fatura aux: selection){
-                repository.delete(aux);
-                modelFatura.removeElement(aux);
-            }
+        for(Fatura aux: selection){
+            
+            repository.delete(aux);
+            modelFatura.removeElement(aux); 
+        }
+ 
     }//GEN-LAST:event_bntExcluirLixeiraActionPerformed
 
     private void bntEsvaziarLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEsvaziarLixeiraActionPerformed
