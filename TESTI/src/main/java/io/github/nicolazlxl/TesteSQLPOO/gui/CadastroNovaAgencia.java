@@ -30,7 +30,7 @@ import static org.hibernate.Hibernate.set;
 
 /**
  *
- * @author Dell
+ * @author Sarah Emanuelle
  */
 public class CadastroNovaAgencia extends javax.swing.JFrame {
 
@@ -50,31 +50,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         modelAgencia.addAll(repository.findAll());
         initComponents();
         
-        lblAlerta.setVisible(false);
-                
-           
-        
-//        DataPickerSettings settings = new DataPickerSettings(Locale.of("pt","BR"));
-//        
-//        settings.setFormatForDatesCommonEra(
-//            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//          settings.setFortmatForDatesBeforeCommonEra(
-//            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//          
-//        settings.setTranslationToday("Hoje");
-//        settings.setTranslationClear("Limpar");
-//        
-//        Font defaultFont = txtNome.getFont();
-//        
-//        settings.setFontValidDate(defaultFont);
-//        settings.setFontIvalidDate(defaultFont);
-//        settings.setFontVetoedDate(defaultFont);
-        
-//        dtpNascimento.setSettings(settings);
-//        
-//        settings.setDateRangeLimits(LocalDate.MIN, LocalDate.now());
-//        
-        
+        lblAlerta.setVisible(false);  
         
         
     }
@@ -437,26 +413,15 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
             return;
         }
         if(lstAgencia.getSelectedIndices().length == 1){
-            
-            
              List<Agencia> selection = lstAgencia.getSelectedValuesList();
-             
              Agencia selecionada = selection.getFirst();
-             
              selecionada.setToTrash(true);
-          
              repository.saveOrUpdate(selecionada);
-            
             modelAgencia.removeElement(selecionada);
-            
-            
         }else{
             List<Agencia> selection = lstAgencia.getSelectedValuesList();
-            
-            for(Agencia aux: selection){
-                
+            for(Agencia aux: selection){ 
                 aux.setToTrash(true);
-          
              repository.saveOrUpdate(aux);
                 modelAgencia.removeElement(aux);
             }
@@ -476,32 +441,21 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     }//GEN-LAST:event_radExcluidosItemStateChanged
 
     private void Restau(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restau
-       
-           if(lstAgencia.getSelectedIndices().length == 0){
+
+        if(lstAgencia.getSelectedIndices().length == 0){
             showWarning("Selecione ao menos uma agência");
             return;
         }
         if(lstAgencia.getSelectedIndices().length == 1){
-            
-            
              List<Agencia> selection = lstAgencia.getSelectedValuesList();
-             
              Agencia selecionada = selection.getFirst();
-             
              selecionada.setToTrash(false);
-          
              repository.saveOrUpdate(selecionada);
-            
             modelAgencia.removeElement(selecionada);
-            
-            
         }else{
             List<Agencia> selection = lstAgencia.getSelectedValuesList();
-            
             for(Agencia aux: selection){
-                
                 aux.setToTrash(false);
-          
              repository.saveOrUpdate(aux);
                 modelAgencia.removeElement(aux);
             }
@@ -516,38 +470,25 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEsvaziarLixeira
 
     private void bntExcluirPermanentementeLixeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirPermanentementeLixeiraActionPerformed
-       
+
             if(lstAgencia.getSelectedIndices().length == 0){
             showWarning("Selecione ao menos uma agência");
             return;
         }
         if(lstAgencia.getSelectedIndices().length == 1){
-            
-            
              List<Agencia> selection = lstAgencia.getSelectedValuesList();
-             
              Agencia selecionada = selection.getFirst();
-             
              repository.delete(selecionada);
-            
             modelAgencia.removeElement(selecionada);
              showWarning("Agencia deletada");
-            
         }else{
             List<Agencia> selection = lstAgencia.getSelectedValuesList();
-            
             for(Agencia aux: selection){
-                
               showWarning("Agencias deletadas");
-          
                 repository.delete(aux);
                 modelAgencia.removeElement(aux);
             }
-        }
-        
-        
-        
-        
+        } 
     }//GEN-LAST:event_bntExcluirPermanentementeLixeiraActionPerformed
 
     private void radPresentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPresentesActionPerformed
@@ -601,20 +542,7 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     
             }
         });
-        
-//        LookAndFeel[] lafs = new LookAndFeel[]{
-//            new FlatLightlaf();
-//        };
-//
-//        for(LookAndFeel laf: lafs){
-//            try{
-//                  UIManager.setLookAndFeel(laf);
-//                  CadastroNovaAgencia frame = new CadastroNovaAgencia();
-//                  frame.setTitle(frame.getTitle() + "::" + laf.getName());
-//            }catch(UnsupportedLookAndFeelException ex){
-//               System.getLogger(CadastroNovaAgencia.class.getNome()).log(System.Logger.Level.ERRO, (String) null,ex);
-//        }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -662,9 +590,8 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
     private void Switchancy(boolean status) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      
-        //radExcluidos.setEnabled(status);
-       // radPresentes.setEnabled(!status);
-
+//        radExcluidos.setEnabled(status);
+//        radPresentes.setEnabled(!status);
 
     }
     
@@ -689,54 +616,4 @@ public class CadastroNovaAgencia extends javax.swing.JFrame {
         txtNome.requestFocus();
         
     }
-
-//    private static class chkAtivo {
-//
-//        private static void setSelected(boolean b) {
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//        }
-//
-//        public chkAtivo() {
-//        }
-//    }
-
-    private static class DataPickerSettings {
-
-        public DataPickerSettings() {
-        }
-
-        private DataPickerSettings(Locale of) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setFormatForDatesCommonEra(DateTimeFormatter ofPattern) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setFortmatForDatesBeforeCommonEra(DateTimeFormatter ofPattern) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setTranslationToday(String hoje) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setTranslationClear(String limpar) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setFontValidDate(Font defaultFont) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setFontIvalidDate(Font defaultFont) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void setFontVetoedDate(Font defaultFont) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-    }
-
-    
 }
