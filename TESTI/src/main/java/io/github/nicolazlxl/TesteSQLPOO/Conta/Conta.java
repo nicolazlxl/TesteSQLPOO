@@ -7,12 +7,8 @@ package io.github.nicolazlxl.TesteSQLPOO.Conta;
 import io.github.nicolazlxl.TesteSQLPOO.Entidades.ProjectEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.PostLoad;
-import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 /**
  *
